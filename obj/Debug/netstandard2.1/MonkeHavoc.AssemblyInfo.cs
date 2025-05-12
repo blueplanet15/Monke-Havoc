@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MonkeHavoc")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fad7a1da9fd865d1785742011a828e7c85de5408")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+eaf554c9bec6a209d3df0798018e9798833e252a")]
 [assembly: System.Reflection.AssemblyProductAttribute("MonkeHavoc")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MonkeHavoc")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
