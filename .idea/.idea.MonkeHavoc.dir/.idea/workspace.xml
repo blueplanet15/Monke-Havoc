@@ -5,27 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="52ba6197-0f0b-432d-a393-68bc0e333d54" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Patches/ImSickAndTiredOfApplyingShadersPatch.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.MonkeHavoc.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MonkeHavoc.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Directory.Build.props" beforeDir="false" afterPath="$PROJECT_DIR$/Directory.Build.props" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Folder.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/Folder.DotSettings.user" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HarmonyPatches.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Patches/HarmonyPatches.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ModTemplate.csproj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ModTemplate.sln" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Patches/ExamplePatch.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plugin.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Panel/Plugin.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PluginInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PluginInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MonkeHavoc.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/MonkeHavoc.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Panel/Plugin.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Panel/Plugin.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/netstandard2.1/MonkeHavoc.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/netstandard2.1/MonkeHavoc.AssemblyInfo.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/netstandard2.1/MonkeHavoc.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/netstandard2.1/MonkeHavoc.AssemblyInfoInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/netstandard2.1/MonkeHavoc.IgnoresAccessChecksTo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/netstandard2.1/MonkeHavoc.IgnoresAccessChecksTo.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/netstandard2.1/MonkeHavoc.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/netstandard2.1/MonkeHavoc.assets.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/netstandard2.1/MonkeHavoc.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/netstandard2.1/MonkeHavoc.csproj.AssemblyReference.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/MonkeHavoc.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/obj/MonkeHavoc.csproj.nuget.dgspec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/MonkeHavoc.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/obj/MonkeHavoc.csproj.nuget.g.props" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/obj/project.assets.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/project.nuget.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/obj/project.packagespec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/obj/rider.project.restore.info" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -162,14 +147,7 @@
       <workItem from="1747055274065" duration="1381000" />
       <workItem from="1747056967137" duration="1155000" />
       <workItem from="1747059291488" duration="1357000" />
-      <workItem from="1747060807836" duration="795000" />
-    </task>
-    <task id="LOCAL−00075" summary="fadafdsfsd">
-      <option name="closed" value="true" />
-      <created>1746454333380</created>
-      <option name="number" value="LOCAL−00075" />
-      <option name="presentableId" value="LOCAL−00075" />
-      <updated>1746454333380</updated>
+      <workItem from="1747060807836" duration="2362000" />
     </task>
     <task id="LOCAL−00076" summary="asdfasdf">
       <option name="closed" value="true" />
@@ -507,7 +485,14 @@
       <option name="presentableId" value="LOCAL−00123" />
       <updated>1747060049877</updated>
     </task>
-    <option name="localTasksCounter" value="124" />
+    <task id="LOCAL−00124" summary="try try try">
+      <option name="closed" value="true" />
+      <created>1747061684835</created>
+      <option name="number" value="LOCAL−00124" />
+      <option name="presentableId" value="LOCAL−00124" />
+      <updated>1747061684835</updated>
+    </task>
+    <option name="localTasksCounter" value="125" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -531,7 +516,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Added some try catches to the Plugin.cs methods since it was a little unorganized with no null checks." />
     <MESSAGE value="Added a comment because I accidentaly pushed Commit." />
     <MESSAGE value="No more errors!" />
     <MESSAGE value="Made dynamic page handling and added &quot;interface&quot; as an option for the panel." />
@@ -556,7 +540,8 @@
     <MESSAGE value="fixed bone esp" />
     <MESSAGE value="PLS PULL AND TEST IN VR" />
     <MESSAGE value="fdfafds" />
-    <option name="LAST_COMMIT_MESSAGE" value="fdfafds" />
+    <MESSAGE value="try try try" />
+    <option name="LAST_COMMIT_MESSAGE" value="try try try" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
