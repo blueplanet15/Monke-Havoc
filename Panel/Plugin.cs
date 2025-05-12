@@ -1,4 +1,5 @@
-﻿using BepInEx;
+﻿using System;
+using BepInEx;
 using GorillaLocomotion;
 using MonkeHavoc.Patches;
 using UnityEngine;
@@ -39,9 +40,8 @@ namespace MonkeHavoc.Panel
 			}
 		}
 
-		void OnGameInitialized(object sender, System.EventArgs e)
+		void OnGameInitialized(object sender, EventArgs e)
 		{
-			
 		}
 
 		void OnLeftRoom()
