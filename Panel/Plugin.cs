@@ -39,6 +39,11 @@ namespace MonkeHavoc.Panel
 			}
 		}
 
+		void OnGameInitialized(object sender, System.EventArgs e)
+		{
+			
+		}
+
 		void OnLeftRoom()
 		{
 			allowed = false;
