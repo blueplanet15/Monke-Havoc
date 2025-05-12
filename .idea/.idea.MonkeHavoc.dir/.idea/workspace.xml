@@ -1,0 +1,556 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="52ba6197-0f0b-432d-a393-68bc0e333d54" name="Changes" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;HanSolo1OOOFalcon&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/HanSolo1OOOFalcon/Monke-Havoc.git&quot;,
+    &quot;accountId&quot;: &quot;5d299330-f481-4ebb-ac2b-d919bc90afaa&quot;
+  }
+}</component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/e09053a7ed63428d986ffaff480666b6435000/71/d9e414a1/GorillaPressableButton.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/e09053a7ed63428d986ffaff480666b6435000/71/f2e47755/FreeHoverboardManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Classes/ButtonGenerator.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Modules/Guns/Spawners/CleanAll.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Modules/Horror/HorrorScene.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Modules/Settings/SpeedBoostSetting.cs" root0="SKIP_HIGHLIGHTING" />
+  </component>
+  <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="2wY05pYZZu2ljAwDleZRxpIZMVh" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.CommitDialog&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RiderProblemsViewState">
+    <hideBySeverity>
+      <option value="12" />
+      <option value="13" />
+      <option value="14" />
+      <option value="15" />
+      <option value="16" />
+      <option value="300" />
+    </hideBySeverity>
+  </component>
+  <component name="RunManager">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+      <option name="projectPathOnTarget" />
+      <option name="runtimes">
+        <list />
+      </option>
+      <option name="selectedOptions">
+        <list />
+      </option>
+      <option name="useMixedMode" value="false" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="52ba6197-0f0b-432d-a393-68bc0e333d54" name="Changes" comment="" />
+      <created>1746203020504</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1746203020504</updated>
+      <workItem from="1746203023511" duration="1007000" />
+      <workItem from="1746204082258" duration="1781000" />
+      <workItem from="1746207579781" duration="2189000" />
+      <workItem from="1746211333514" duration="8669000" />
+      <workItem from="1746263833824" duration="2297000" />
+      <workItem from="1746267525183" duration="12000" />
+      <workItem from="1746270186391" duration="17452000" />
+      <workItem from="1746291430614" duration="2000" />
+      <workItem from="1746292292449" duration="7744000" />
+      <workItem from="1746305847967" duration="331000" />
+      <workItem from="1746309461695" duration="196000" />
+      <workItem from="1746342707039" duration="7846000" />
+      <workItem from="1746360447498" duration="723000" />
+      <workItem from="1746364065238" duration="1377000" />
+      <workItem from="1746369078342" duration="2280000" />
+      <workItem from="1746373934315" duration="607000" />
+      <workItem from="1746378857822" duration="1523000" />
+      <workItem from="1746384306854" duration="629000" />
+      <workItem from="1746449048842" duration="13607000" />
+      <workItem from="1746463238277" duration="1306000" />
+      <workItem from="1746465696081" duration="5181000" />
+      <workItem from="1746510302430" duration="1574000" />
+      <workItem from="1746534066513" duration="2416000" />
+      <workItem from="1746543530615" duration="10627000" />
+      <workItem from="1746557345575" duration="1553000" />
+      <workItem from="1746561047093" duration="70000" />
+      <workItem from="1746561762527" duration="786000" />
+      <workItem from="1746563495740" duration="53000" />
+      <workItem from="1746600929226" duration="1811000" />
+      <workItem from="1746603846731" duration="140000" />
+      <workItem from="1746609493288" duration="13164000" />
+      <workItem from="1746626641029" duration="69000" />
+      <workItem from="1746627965447" duration="41000" />
+      <workItem from="1746640376386" duration="10806000" />
+      <workItem from="1746652000091" duration="315000" />
+      <workItem from="1746709568983" duration="61000" />
+      <workItem from="1746709648281" duration="8780000" />
+      <workItem from="1746780898662" duration="213000" />
+      <workItem from="1746800497555" duration="2253000" />
+      <workItem from="1746816942581" duration="3294000" />
+      <workItem from="1746869030008" duration="6300000" />
+      <workItem from="1746881556631" duration="91000" />
+      <workItem from="1746890520048" duration="75000" />
+      <workItem from="1746973363781" duration="23000" />
+      <workItem from="1746975903319" duration="949000" />
+      <workItem from="1746982645734" duration="235000" />
+      <workItem from="1746989402308" duration="362000" />
+      <workItem from="1747055274065" duration="1381000" />
+      <workItem from="1747056967137" duration="1155000" />
+      <workItem from="1747059291488" duration="755000" />
+    </task>
+    <task id="LOCAL−00075" summary="fadafdsfsd">
+      <option name="closed" value="true" />
+      <created>1746454333380</created>
+      <option name="number" value="LOCAL−00075" />
+      <option name="presentableId" value="LOCAL−00075" />
+      <updated>1746454333380</updated>
+    </task>
+    <task id="LOCAL−00076" summary="asdfasdf">
+      <option name="closed" value="true" />
+      <created>1746456171550</created>
+      <option name="number" value="LOCAL−00076" />
+      <option name="presentableId" value="LOCAL−00076" />
+      <updated>1746456171550</updated>
+    </task>
+    <task id="LOCAL−00077" summary="sdfghjk">
+      <option name="closed" value="true" />
+      <created>1746456708196</created>
+      <option name="number" value="LOCAL−00077" />
+      <option name="presentableId" value="LOCAL−00077" />
+      <updated>1746456708196</updated>
+    </task>
+    <task id="LOCAL−00078" summary="fdafdsfsdaf">
+      <option name="closed" value="true" />
+      <created>1746457163620</created>
+      <option name="number" value="LOCAL−00078" />
+      <option name="presentableId" value="LOCAL−00078" />
+      <updated>1746457163621</updated>
+    </task>
+    <task id="LOCAL−00079" summary="We have FULLY WORKING BUTTONS + PAGES">
+      <option name="closed" value="true" />
+      <created>1746457511592</created>
+      <option name="number" value="LOCAL−00079" />
+      <option name="presentableId" value="LOCAL−00079" />
+      <updated>1746457511592</updated>
+    </task>
+    <task id="LOCAL−00080" summary="Teleport gun pls">
+      <option name="closed" value="true" />
+      <created>1746459718930</created>
+      <option name="number" value="LOCAL−00080" />
+      <option name="presentableId" value="LOCAL−00080" />
+      <updated>1746459718930</updated>
+    </task>
+    <task id="LOCAL−00081" summary="Hello, I made a Gun Template!">
+      <option name="closed" value="true" />
+      <created>1746460319193</created>
+      <option name="number" value="LOCAL−00081" />
+      <option name="presentableId" value="LOCAL−00081" />
+      <updated>1746460319193</updated>
+    </task>
+    <task id="LOCAL−00082" summary="Now checkpoints work too!">
+      <option name="closed" value="true" />
+      <created>1746460554574</created>
+      <option name="number" value="LOCAL−00082" />
+      <option name="presentableId" value="LOCAL−00082" />
+      <updated>1746460554574</updated>
+    </task>
+    <task id="LOCAL−00083" summary="Last commit on the TP gun for a while.">
+      <option name="closed" value="true" />
+      <created>1746460653495</created>
+      <option name="number" value="LOCAL−00083" />
+      <option name="presentableId" value="LOCAL−00083" />
+      <updated>1746460653495</updated>
+    </task>
+    <task id="LOCAL−00084" summary="Added Bone ESP, hopefully it works although we won't know for *obvious* reasons.">
+      <option name="closed" value="true" />
+      <created>1746461647576</created>
+      <option name="number" value="LOCAL−00084" />
+      <option name="presentableId" value="LOCAL−00084" />
+      <updated>1746461647576</updated>
+    </task>
+    <task id="LOCAL−00085" summary="Made checkpoints less annoying and fixed infinite teleporting with it.">
+      <option name="closed" value="true" />
+      <created>1746462929758</created>
+      <option name="number" value="LOCAL−00085" />
+      <option name="presentableId" value="LOCAL−00085" />
+      <updated>1746462929758</updated>
+    </task>
+    <task id="LOCAL−00086" summary="I added categories! (It is awesome)">
+      <option name="closed" value="true" />
+      <created>1746468158206</created>
+      <option name="number" value="LOCAL−00086" />
+      <option name="presentableId" value="LOCAL−00086" />
+      <updated>1746468158207</updated>
+    </task>
+    <task id="LOCAL−00087" summary="NoClip and Fly added!">
+      <option name="closed" value="true" />
+      <created>1746468418678</created>
+      <option name="number" value="LOCAL−00087" />
+      <option name="presentableId" value="LOCAL−00087" />
+      <updated>1746468418678</updated>
+    </task>
+    <task id="LOCAL−00088" summary="Added buttons for time and added time resetters when leaving a room.">
+      <option name="closed" value="true" />
+      <created>1746470134318</created>
+      <option name="number" value="LOCAL−00088" />
+      <option name="presentableId" value="LOCAL−00088" />
+      <updated>1746470134318</updated>
+    </task>
+    <task id="LOCAL−00089" summary="Made NoClip not make my computer explode!">
+      <option name="closed" value="true" />
+      <created>1746471224303</created>
+      <option name="number" value="LOCAL−00089" />
+      <option name="presentableId" value="LOCAL−00089" />
+      <updated>1746471224303</updated>
+    </task>
+    <task id="LOCAL−00090" summary="Made the hoverboards be grabbable and fixed the redundant modded check inside of the hoverboard gun method.">
+      <option name="closed" value="true" />
+      <created>1746511534925</created>
+      <option name="number" value="LOCAL−00090" />
+      <option name="presentableId" value="LOCAL−00090" />
+      <updated>1746511534925</updated>
+    </task>
+    <task id="LOCAL−00091" summary="did a thing">
+      <option name="closed" value="true" />
+      <created>1746534290308</created>
+      <option name="number" value="LOCAL−00091" />
+      <option name="presentableId" value="LOCAL−00091" />
+      <updated>1746534290309</updated>
+    </task>
+    <task id="LOCAL−00092" summary="Toast, no more hard coded modded checks.">
+      <option name="closed" value="true" />
+      <created>1746534837373</created>
+      <option name="number" value="LOCAL−00092" />
+      <option name="presentableId" value="LOCAL−00092" />
+      <updated>1746534837373</updated>
+    </task>
+    <task id="LOCAL−00093" summary="I added a so called &quot;LockOnGunTemplate&quot; that when you shoot the gun at a person it locks on until you stop shooting. I don't know what we could use it for since we aren't making cringe shit like tag guns but it might be useful in the future! Anyways I'll try to come up with some more guns since it's fun to code those.">
+      <option name="closed" value="true" />
+      <created>1746536250276</created>
+      <option name="number" value="LOCAL−00093" />
+      <option name="presentableId" value="LOCAL−00093" />
+      <updated>1746536250276</updated>
+    </task>
+    <task id="LOCAL−00094" summary="time to do raycasting buttons">
+      <option name="closed" value="true" />
+      <created>1746546458638</created>
+      <option name="number" value="LOCAL−00094" />
+      <option name="presentableId" value="LOCAL−00094" />
+      <updated>1746546458639</updated>
+    </task>
+    <task id="LOCAL−00095" summary="added raycasted button pressing">
+      <option name="closed" value="true" />
+      <created>1746549617758</created>
+      <option name="number" value="LOCAL−00095" />
+      <option name="presentableId" value="LOCAL−00095" />
+      <updated>1746549617759</updated>
+    </task>
+    <task id="LOCAL−00096" summary="Did ALOT of things">
+      <option name="closed" value="true" />
+      <created>1746556062340</created>
+      <option name="number" value="LOCAL−00096" />
+      <option name="presentableId" value="LOCAL−00096" />
+      <updated>1746556062340</updated>
+    </task>
+    <task id="LOCAL−00097" summary="Added try catches to ALL guns instead of doing a null check (it's just better)">
+      <option name="closed" value="true" />
+      <created>1746562124196</created>
+      <option name="number" value="LOCAL−00097" />
+      <option name="presentableId" value="LOCAL−00097" />
+      <updated>1746562124197</updated>
+    </task>
+    <task id="LOCAL−00098" summary="(Hopefully) added grab gun for the wannabe mono sandbox section although it is too late for me to test.">
+      <option name="closed" value="true" />
+      <created>1746562538041</created>
+      <option name="number" value="LOCAL−00098" />
+      <option name="presentableId" value="LOCAL−00098" />
+      <updated>1746562538041</updated>
+    </task>
+    <task id="LOCAL−00099" summary="Added some try catches to the Plugin.cs methods since it was a little unorganized with no null checks.">
+      <option name="closed" value="true" />
+      <created>1746601514718</created>
+      <option name="number" value="LOCAL−00099" />
+      <option name="presentableId" value="LOCAL−00099" />
+      <updated>1746601514718</updated>
+    </task>
+    <task id="LOCAL−00100" summary="Added a comment because I accidentaly pushed Commit.">
+      <option name="closed" value="true" />
+      <created>1746601570724</created>
+      <option name="number" value="LOCAL−00100" />
+      <option name="presentableId" value="LOCAL−00100" />
+      <updated>1746601570724</updated>
+    </task>
+    <task id="LOCAL−00101" summary="No more errors!">
+      <option name="closed" value="true" />
+      <created>1746603948948</created>
+      <option name="number" value="LOCAL−00101" />
+      <option name="presentableId" value="LOCAL−00101" />
+      <updated>1746603948948</updated>
+    </task>
+    <task id="LOCAL−00102" summary="Made dynamic page handling and added &quot;interface&quot; as an option for the panel.">
+      <option name="closed" value="true" />
+      <created>1746615878398</created>
+      <option name="number" value="LOCAL−00102" />
+      <option name="presentableId" value="LOCAL−00102" />
+      <updated>1746615878398</updated>
+    </task>
+    <task id="LOCAL−00103" summary="I added rain and no rain.">
+      <option name="closed" value="true" />
+      <created>1746620894581</created>
+      <option name="number" value="LOCAL−00103" />
+      <option name="presentableId" value="LOCAL−00103" />
+      <updated>1746620894581</updated>
+    </task>
+    <task id="LOCAL−00104" summary="I added some horror mods">
+      <option name="closed" value="true" />
+      <created>1746626694264</created>
+      <option name="number" value="LOCAL−00104" />
+      <option name="presentableId" value="LOCAL−00104" />
+      <updated>1746626694265</updated>
+    </task>
+    <task id="LOCAL−00105" summary="Added spam options for the spawners (enable with caution)">
+      <option name="closed" value="true" />
+      <created>1746641968085</created>
+      <option name="number" value="LOCAL−00105" />
+      <option name="presentableId" value="LOCAL−00105" />
+      <updated>1746641968085</updated>
+    </task>
+    <task id="LOCAL−00106" summary="(Hopefully) made auto button creation with superclass inheriting.">
+      <option name="closed" value="true" />
+      <created>1746647266329</created>
+      <option name="number" value="LOCAL−00106" />
+      <option name="presentableId" value="LOCAL−00106" />
+      <updated>1746647266330</updated>
+    </task>
+    <task id="LOCAL−00107" summary="I AUTOMATED BUTTON CREATION BY INHERITING FROM THE MONKEHAVOCMODULE SUPERCLASS!!!">
+      <option name="closed" value="true" />
+      <created>1746651730557</created>
+      <option name="number" value="LOCAL−00107" />
+      <option name="presentableId" value="LOCAL−00107" />
+      <updated>1746651730557</updated>
+    </task>
+    <task id="LOCAL−00108" summary="Optimized invoking of modules, I think this is the last optimization I will make to the panel for a while.">
+      <option name="closed" value="true" />
+      <created>1746709874380</created>
+      <option name="number" value="LOCAL−00108" />
+      <option name="presentableId" value="LOCAL−00108" />
+      <updated>1746709874382</updated>
+    </task>
+    <task id="LOCAL−00109" summary="Added stats page at THE VERY BACK">
+      <option name="closed" value="true" />
+      <created>1746717700727</created>
+      <option name="number" value="LOCAL−00109" />
+      <option name="presentableId" value="LOCAL−00109" />
+      <updated>1746717700727</updated>
+    </task>
+    <task id="LOCAL−00110" summary="Added sticky settings for plats in settings">
+      <option name="closed" value="true" />
+      <created>1746718041157</created>
+      <option name="number" value="LOCAL−00110" />
+      <option name="presentableId" value="LOCAL−00110" />
+      <updated>1746718041157</updated>
+    </task>
+    <task id="LOCAL−00111" summary="Made sticky update!">
+      <option name="closed" value="true" />
+      <created>1746719377066</created>
+      <option name="number" value="LOCAL−00111" />
+      <option name="presentableId" value="LOCAL−00111" />
+      <updated>1746719377066</updated>
+    </task>
+    <task id="LOCAL−00112" summary="did some things">
+      <option name="closed" value="true" />
+      <created>1746720454893</created>
+      <option name="number" value="LOCAL−00112" />
+      <option name="presentableId" value="LOCAL−00112" />
+      <updated>1746720454894</updated>
+    </task>
+    <task id="LOCAL−00113" summary="Added a string array called &quot;blacklistedIds&quot; that checks your id on startup and if your id is in blacklisted ids your game crashes so if someone is a pedophile (I asked Graze for the id of the pedophile) and we add their id to blacklisted ids they can't use Monke Havoc!">
+      <option name="closed" value="true" />
+      <created>1746781080965</created>
+      <option name="number" value="LOCAL−00113" />
+      <option name="presentableId" value="LOCAL−00113" />
+      <updated>1746781080965</updated>
+    </task>
+    <task id="LOCAL−00114" summary="Some optimizations to the raycasting to (hopefully) make it useable in  stump.">
+      <option name="closed" value="true" />
+      <created>1746801797803</created>
+      <option name="number" value="LOCAL−00114" />
+      <option name="presentableId" value="LOCAL−00114" />
+      <updated>1746801797804</updated>
+    </task>
+    <task id="LOCAL−00115" summary="A lot has changed">
+      <option name="closed" value="true" />
+      <created>1746973378776</created>
+      <option name="number" value="LOCAL−00115" />
+      <option name="presentableId" value="LOCAL−00115" />
+      <updated>1746973378778</updated>
+    </task>
+    <task id="LOCAL−00116" summary="works?">
+      <option name="closed" value="true" />
+      <created>1746976221783</created>
+      <option name="number" value="LOCAL−00116" />
+      <option name="presentableId" value="LOCAL−00116" />
+      <updated>1746976221783</updated>
+    </task>
+    <task id="LOCAL−00117" summary="Hopefully fixed buttons.">
+      <option name="closed" value="true" />
+      <created>1746982854406</created>
+      <option name="number" value="LOCAL−00117" />
+      <option name="presentableId" value="LOCAL−00117" />
+      <updated>1746982854406</updated>
+    </task>
+    <task id="LOCAL−00118" summary="he knows its illegal (most southern accent ive ever heard, something someone said on ariel screenshare)">
+      <option name="closed" value="true" />
+      <created>1747057088504</created>
+      <option name="number" value="LOCAL−00118" />
+      <option name="presentableId" value="LOCAL−00118" />
+      <updated>1747057088505</updated>
+    </task>
+    <task id="LOCAL−00119" summary="dfdf">
+      <option name="closed" value="true" />
+      <created>1747057483666</created>
+      <option name="number" value="LOCAL−00119" />
+      <option name="presentableId" value="LOCAL−00119" />
+      <updated>1747057483666</updated>
+    </task>
+    <task id="LOCAL−00120" summary="go in vr for this">
+      <option name="closed" value="true" />
+      <created>1747058120123</created>
+      <option name="number" value="LOCAL−00120" />
+      <option name="presentableId" value="LOCAL−00120" />
+      <updated>1747058120123</updated>
+    </task>
+    <task id="LOCAL−00121" summary="fixed bone esp">
+      <option name="closed" value="true" />
+      <created>1747059402666</created>
+      <option name="number" value="LOCAL−00121" />
+      <option name="presentableId" value="LOCAL−00121" />
+      <updated>1747059402666</updated>
+    </task>
+    <task id="LOCAL−00122" summary="PLS PULL AND TEST IN VR">
+      <option name="closed" value="true" />
+      <created>1747059522200</created>
+      <option name="number" value="LOCAL−00122" />
+      <option name="presentableId" value="LOCAL−00122" />
+      <updated>1747059522200</updated>
+    </task>
+    <task id="LOCAL−00123" summary="fdfafds">
+      <option name="closed" value="true" />
+      <created>1747060049877</created>
+      <option name="number" value="LOCAL−00123" />
+      <option name="presentableId" value="LOCAL−00123" />
+      <updated>1747060049877</updated>
+    </task>
+    <option name="localTasksCounter" value="124" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
+  <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
+  <component name="UnityProjectDiscoverer">
+    <option name="hasUnityReference" value="true" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <MESSAGE value="Added some try catches to the Plugin.cs methods since it was a little unorganized with no null checks." />
+    <MESSAGE value="Added a comment because I accidentaly pushed Commit." />
+    <MESSAGE value="No more errors!" />
+    <MESSAGE value="Made dynamic page handling and added &quot;interface&quot; as an option for the panel." />
+    <MESSAGE value="I added rain and no rain." />
+    <MESSAGE value="I added some horror mods" />
+    <MESSAGE value="Added spam options for the spawners (enable with caution)" />
+    <MESSAGE value="(Hopefully) made auto button creation with superclass inheriting." />
+    <MESSAGE value="I AUTOMATED BUTTON CREATION BY INHERITING FROM THE MONKEHAVOCMODULE SUPERCLASS!!!" />
+    <MESSAGE value="Optimized invoking of modules, I think this is the last optimization I will make to the panel for a while." />
+    <MESSAGE value="Added stats page at THE VERY BACK" />
+    <MESSAGE value="Added sticky settings for plats in settings" />
+    <MESSAGE value="Made sticky update!" />
+    <MESSAGE value="did some things" />
+    <MESSAGE value="Added a string array called &quot;blacklistedIds&quot; that checks your id on startup and if your id is in blacklisted ids your game crashes so if someone is a pedophile (I asked Graze for the id of the pedophile) and we add their id to blacklisted ids they can't use Monke Havoc!" />
+    <MESSAGE value="Some optimizations to the raycasting to (hopefully) make it useable in  stump." />
+    <MESSAGE value="A lot has changed" />
+    <MESSAGE value="works?" />
+    <MESSAGE value="Hopefully fixed buttons." />
+    <MESSAGE value="he knows its illegal (most southern accent ive ever heard, something someone said on ariel screenshare)" />
+    <MESSAGE value="dfdf" />
+    <MESSAGE value="go in vr for this" />
+    <MESSAGE value="fixed bone esp" />
+    <MESSAGE value="PLS PULL AND TEST IN VR" />
+    <MESSAGE value="fdfafds" />
+    <option name="LAST_COMMIT_MESSAGE" value="fdfafds" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="DotNet_Exception_Breakpoints">
+          <properties exception="System.OperationCanceledException" breakIfHandledByOtherCode="false" displayValue="System.OperationCanceledException" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+        <breakpoint enabled="true" type="DotNet_Exception_Breakpoints">
+          <properties exception="System.Threading.Tasks.TaskCanceledException" breakIfHandledByOtherCode="false" displayValue="System.Threading.Tasks.TaskCanceledException" />
+          <option name="timeStamp" value="2" />
+        </breakpoint>
+        <breakpoint enabled="true" type="DotNet_Exception_Breakpoints">
+          <properties exception="System.Threading.ThreadAbortException" breakIfHandledByOtherCode="false" displayValue="System.Threading.ThreadAbortException" />
+          <option name="timeStamp" value="3" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
