@@ -218,6 +218,6 @@ namespace MonkeHavoc.Panel
 					ball.SetActive(false);
 				}
 			}
-		}
+		} // henlo
 	}
 }
