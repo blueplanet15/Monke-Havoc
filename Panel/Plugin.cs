@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using BepInEx;
 using GorillaLocomotion;
 using MonkeHavoc.Classes;
 using MonkeHavoc.Modules.Horror;
+using MonkeHavoc.Modules.Spawners;
 using MonkeHavoc.Patches;
 using UnityEngine;
 using TMPro;
+using UnityEngine.XR;
 using static MonkeHavoc.Panel.AllButtons;
 
 namespace MonkeHavoc.Panel
@@ -27,13 +28,6 @@ namespace MonkeHavoc.Panel
         {
             NetworkSystem.Instance.OnJoinedRoomEvent += OnJoinedRoom;
             NetworkSystem.Instance.OnReturnedToSinglePlayer += OnLeftRoom;
-
-            if (!PlayerPrefs.HasKey("SeenGhostReactor"))
-            {
-                CreatePanel();
-                CreateMyBawlerLikeHolyShitHeIsBAWLING();
-                allowed = true;
-            }
         }
 
         private void OnJoinedRoom()
@@ -41,13 +35,16 @@ namespace MonkeHavoc.Panel
             if (NetworkSystem.Instance.GameModeString.Contains("MODDED"))
             {
                 allowed = true;
+                GTPlayer.Instance.SetHoverAllowed(true);
                 CreatePanel();
                 CreateMyBawlerLikeHolyShitHeIsBAWLING();
             }
             else
             {
                 allowed = false;
+                RemoveAll.ExecuteAllOfThem();
                 AbuseMyPowerAndDestroyItAll();
+                HorrorLightingHandler.NormalLighting();
                 foreach (MonkeHavocModule[] category in categories)
                 {
                     foreach (MonkeHavocModule button in category)
@@ -73,6 +70,8 @@ namespace MonkeHavoc.Panel
         private void OnLeftRoom()
         {
             allowed = false;
+            GTPlayer.Instance.SetHoverAllowed(false);
+            RemoveAll.ExecuteAllOfThem();
             AbuseMyPowerAndDestroyItAll();
             HorrorLightingHandler.NormalLighting();
             foreach (MonkeHavocModule[] category in categories)
@@ -141,10 +140,10 @@ namespace MonkeHavoc.Panel
             // Category Shower
             GameObject cs = GameObject.CreatePrimitive(PrimitiveType.Cube);
             cs.GetComponent<Renderer>().material.shader = Shader.Find("GorillaTag/UberShader");
-            cs.GetComponent<Renderer>().material.color = otherpurp;
+            cs.GetComponent<Renderer>().material.color = (purp + otherpurp) * 0.5f;
             cs.transform.SetParent(panel.transform);
             cs.transform.localScale = new Vector3(1f, 0.9f, 0.15f);
-            cs.transform.localPosition = new Vector3(0.3f, 0f, 0.35f);
+            cs.transform.localPosition = new Vector3(0.6f, 0f, 0.375f);
             cs.transform.localRotation = Quaternion.identity;
             Destroy(cs.GetComponent<BoxCollider>());
             GameObject csTextObj =
@@ -156,7 +155,7 @@ namespace MonkeHavoc.Panel
             pl.GetComponent<Renderer>().material.shader = Shader.Find("GorillaTag/UberShader");
             pl.GetComponent<Renderer>().material.color = otherpurp;
             pl.transform.SetParent(panel.transform);
-            pl.transform.localScale = new Vector3(1f, 0.1f, 1f);
+            pl.transform.localScale = new Vector3(1f, 0.15f, 0.9f);
             pl.transform.localPosition = new Vector3(0f, 0.65f, 0f);
             pl.transform.localRotation = Quaternion.identity;
             pl.GetComponent<BoxCollider>().isTrigger = true;
@@ -187,7 +186,7 @@ namespace MonkeHavoc.Panel
             hb.transform.localRotation = Quaternion.identity;
             hb.GetComponent<BoxCollider>().isTrigger = true;
             hb.AddComponent<ButtonClass>().mystringtorunitallllllllllllllll = "Home";
-            GameObject homeTextObj = CreateTextLabel("Go Home", hb.transform, out var tmp4);
+            GameObject homeTextObj = CreateTextLabel("Go Home", hb.transform, out var tmp4, 1.2f);
 
             // Buttons get automatically created for EFFICIENCY
             for (int categoryIndex = 0; categoryIndex < categories.Length; categoryIndex++)
@@ -209,8 +208,8 @@ namespace MonkeHavoc.Panel
             button.name = text;
             button.transform.SetParent(panel.transform);
             button.transform.localRotation = Quaternion.identity;
-            button.transform.localScale = new Vector3(0.9f, 0.9f, 0.12f);
-            button.transform.localPosition = new Vector3(0.2f, 0f, 0.15f - offset);
+            button.transform.localScale = new Vector3(1f, 0.85f, 0.12f);
+            button.transform.localPosition = new Vector3(0.4f, 0f, 0.2f - offset);
             button.GetComponent<Renderer>().material.shader = Shader.Find("GorillaTag/UberShader");
             button.GetComponent<Renderer>().material.color = otherpurp;
             button.GetComponent<BoxCollider>().isTrigger = true;
@@ -230,6 +229,7 @@ namespace MonkeHavoc.Panel
                 parent.localPosition.z);
             go.transform.localRotation = Quaternion.Euler(180f, 90f, 90f);
             go.transform.localScale = Vector3.one;
+            Destroy(go.GetComponent<Collider>());
 
             tmp = go.AddComponent<TextMeshPro>();
             tmp.text = text;
@@ -284,21 +284,19 @@ namespace MonkeHavoc.Panel
 
         public static void RunAwayWithMeWoHoooooooooooo(string sigmagismga)
         {
+            int totalButtons = categories[currentCategory].Length;
+            int maxPages = Mathf.CeilToInt((float)totalButtons / buttonsPerPageYey);
             if (sigmagismga == "PageLeft")
             {
                 currentPage--;
-                if (currentPage < 0)
-                {
-                    currentPage = categories.Length - 1;
-                }
+                if (currentPage < 0) currentPage = maxPages - 1;
+                UpdateButtons();
             }
             else if (sigmagismga == "PageRight")
             {
                 currentPage++;
-                if (currentPage >= categories.Length)
-                {
-                    currentPage = 0;
-                }
+                if (currentPage >= maxPages) currentPage = 0;
+                UpdateButtons();
             }
             else if (sigmagismga == "Home")
             {
@@ -380,6 +378,7 @@ namespace MonkeHavoc.Panel
 
                 currentCategoryIndex++;
             }
+            toChangeOnUpdateButtons.text = currentCategoryName;
         }
 
         void FixedUpdate()

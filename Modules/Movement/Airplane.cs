@@ -1,4 +1,5 @@
 using System;
+using GorillaLocomotion;
 using UnityEngine;
 
 namespace MonkeHavoc.Modules.Movement
@@ -18,12 +19,12 @@ namespace MonkeHavoc.Modules.Movement
             GameObject.Destroy(lBox.GetComponent<Renderer>());
             GameObject.Destroy(rBox.GetComponent<Renderer>());
 
-            lBox.transform.parent = GorillaLocomotion.GTPlayer.Instance.bodyCollider.transform;
+            lBox.transform.parent = GTPlayer.Instance.bodyCollider.transform;
             lBox.transform.localPosition = new Vector3(-0.5f, 0.2f, 0f);
             lBox.transform.localScale = new Vector3(0.6f, 0.8f, 0.6f);
             lBox.transform.localRotation = Quaternion.Euler(0f, 90f, 0f);
 
-            rBox.transform.parent = GorillaLocomotion.GTPlayer.Instance.bodyCollider.transform;
+            rBox.transform.parent = GTPlayer.Instance.bodyCollider.transform;
             rBox.transform.localPosition = new Vector3(0.5f, 0.2f, 0f);
             rBox.transform.localScale = new Vector3(0.6f, 0.8f, 0.6f);
             rBox.transform.localRotation = Quaternion.Euler(0f, 90f, 0f);
@@ -54,10 +55,8 @@ namespace MonkeHavoc.Modules.Movement
         {
             if (canFlyL && canFlyR)
             {
-                var rb = GorillaLocomotion.GTPlayer.Instance.bodyCollider.attachedRigidbody;
-                GorillaLocomotion.GTPlayer.Instance.transform.position +=
-                    (GorillaLocomotion.GTPlayer.Instance.headCollider.transform.forward * UnityEngine.Time.deltaTime) *
-                    15;
+                var rb = GTPlayer.Instance.bodyCollider.attachedRigidbody;
+                GTPlayer.Instance.transform.position += GTPlayer.Instance.headCollider.transform.forward * Time.deltaTime * 15;
                 rb.velocity = Vector3.zero;
             }
         }

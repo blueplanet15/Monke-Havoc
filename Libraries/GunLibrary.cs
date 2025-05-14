@@ -13,6 +13,8 @@ namespace MonkeHavoc.Libraries
         public void OnEnable()
         {
             pointerBall = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+            pointerBall.GetComponent<Renderer>().material.shader = Shader.Find("GorillaTag/UberShader");
+            pointerBall.GetComponent<Renderer>().material.color = Plugin.purp;
             pointerBall.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
             GameObject.Destroy(pointerBall.GetComponent<Collider>());
             pointerBall.SetActive(false);
