@@ -2,6 +2,8 @@ using MonkeHavoc.Classes;
 using MonkeHavoc.Modules;
 using MonkeHavoc.Modules.Guns;
 using MonkeHavoc.Modules.Horror;
+using MonkeHavoc.Modules.Movement;
+using MonkeHavoc.Modules.Multiplayer;
 
 namespace MonkeHavoc.Panel
 {
@@ -47,6 +49,49 @@ namespace MonkeHavoc.Panel
 
             new MonkeHavocModule[] // Movement
             {
+                new MonkeHavocModule()
+                {
+                    textOnButton = "Platforms", foreverOrOnce = () => Platforms.PlatformsModuleUpdate(),
+                    enable = () => Platforms.CreatePlats(), disable = () => Platforms.DIEDIEDIE()
+                },
+                new MonkeHavocModule()
+                {
+                    textOnButton = "Speedboost", foreverOrOnce = () => Speedboost.LetsDoThisFAST()
+                },
+                new MonkeHavocModule()
+                {
+                    textOnButton = "No Slip", foreverOrOnce = () => NoSlip.OnEnable(),
+                    disable = () => NoSlip.OnDisable()
+                },
+                new MonkeHavocModule()
+                {
+                    textOnButton = "Slippy Hands", foreverOrOnce = () => SlippyHands.OnEnable(),
+                    disable = () => SlippyHands.OnDisable()
+                },
+                new MonkeHavocModule()
+                {
+                    textOnButton = "Fly", foreverOrOnce = () => Fly.UpdateTheMod()
+                },
+                new MonkeHavocModule()
+                {
+                    textOnButton = "Long Arms", enable = () => LongArms.FOREVERTOGETHER(),
+                    disable = () => LongArms.HELEFTNOOOOOOOOO()
+                },
+                new MonkeHavocModule()
+                {
+                    textOnButton = "Checkpoints", foreverOrOnce = () => Checkpoints.OnActivateOrOnForever(),
+                    enable = () => Checkpoints.OnEnable(), disable = () => Checkpoints.OnDisable()
+                },
+                new MonkeHavocModule()
+                {
+                    textOnButton = "Frozone", foreverOrOnce = () => Frozone.UpdateDaMod(),
+                    disable = () => Frozone.DisableDaMod()
+                },
+                new MonkeHavocModule()
+                {
+                    textOnButton = "Airplane", foreverOrOnce = () => Airplane.UpdateTheMod(),
+                    enable = () => Airplane.EnableBadable(), disable = () => Airplane.DisableBadable()
+                },
             },
 
             new MonkeHavocModule[] // Guns
@@ -65,6 +110,11 @@ namespace MonkeHavoc.Panel
 
             new MonkeHavocModule[] // Multiplayer
             {
+                new MonkeHavocModule()
+                {
+                    textOnButton = "Bone ESP", foreverOrOnce = () => BoneESP.OnActivateOrOnForever(),
+                    disable = () => BoneESP.OnDisable()
+                },
             },
 
             new MonkeHavocModule[] // Visual
