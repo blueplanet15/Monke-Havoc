@@ -179,7 +179,7 @@ namespace MonkeHavoc.Panel
 
             var tmp = go.AddComponent<TextMeshPro>();
             tmp.text = text;
-            tmp.fontSize = 0.45f;
+            tmp.fontSize = 2f;
             tmp.color = Color.white;
             tmp.alignment = TextAlignmentOptions.Center;
             tmp.enableAutoSizing = false;
