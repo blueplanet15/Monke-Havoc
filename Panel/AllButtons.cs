@@ -3,7 +3,7 @@ using MonkeHavoc.Modules;
 
 namespace MonkeHavoc.Panel
 {
-    public class allButtons
+    public class AllButtons
     {
         public static MonkeHavocModule[][] categories = new MonkeHavocModule[][]
         {

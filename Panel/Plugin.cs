@@ -6,7 +6,7 @@ using MonkeHavoc.Classes;
 using MonkeHavoc.Patches;
 using UnityEngine;
 using TMPro;
-using static MonkeHavoc.Panel.allButtons;
+using static MonkeHavoc.Panel.AllButtons;
 
 namespace MonkeHavoc.Panel
 {
@@ -56,8 +56,10 @@ namespace MonkeHavoc.Panel
         public static Color otherpurp = new Color32(60, 26, 112, 1);
         public static int currentPage = 0;
         public static int currentCategory = 0;
+        public static string currentCategoryName = "Home";
         private static int buttonsPerPageYey = 5;
         private static List<MonkeHavocModule> toInvoke = new List<MonkeHavocModule>();
+        private static TextMeshPro toChangeOnUpdateButtons;
 
         private static void CreatePanel()
         {
@@ -87,18 +89,19 @@ namespace MonkeHavoc.Panel
             titlePhysicalObj.transform.localPosition = new Vector3(0f, 0f, 0.7f);
             titlePhysicalObj.transform.localRotation = Quaternion.identity;
             Destroy(titlePhysicalObj.GetComponent<BoxCollider>());
-            GameObject titleTextObj = CreateTextLabel("MonkeHavoc", titlePhysicalObj.transform);
+            GameObject titleTextObj = CreateTextLabel("MonkeHavoc", titlePhysicalObj.transform, out var tmp);
 
             // Category Shower
             GameObject cs = GameObject.CreatePrimitive(PrimitiveType.Cube);
             cs.GetComponent<Renderer>().material.shader = Shader.Find("GorillaTag/UberShader");
             cs.GetComponent<Renderer>().material.color = otherpurp;
             cs.transform.SetParent(panel.transform);
-            cs.transform.localScale = new Vector3(1f, 0.9f, 0.1f);
+            cs.transform.localScale = new Vector3(1f, 0.9f, 0.15f);
             cs.transform.localPosition = new Vector3(0.3f, 0f, 0.35f);
             cs.transform.localRotation = Quaternion.identity;
             Destroy(cs.GetComponent<BoxCollider>());
-            GameObject csTextObj = CreateTextLabel("CATEGORY", cs.transform);
+            GameObject csTextObj = CreateTextLabel(currentCategoryName, cs.transform, out TextMeshPro textMeshPro, 1.5f);
+            toChangeOnUpdateButtons = textMeshPro;
 
             // Page Left
             GameObject pl = GameObject.CreatePrimitive(PrimitiveType.Cube);
@@ -110,7 +113,7 @@ namespace MonkeHavoc.Panel
             pl.transform.localRotation = Quaternion.identity;
             pl.GetComponent<BoxCollider>().isTrigger = true;
             pl.AddComponent<ButtonClass>().mystringtorunitallllllllllllllll = "PageLeft";
-            GameObject pageLeftTextObj = CreateTextLabel("<", pl.transform);
+            GameObject pageLeftTextObj = CreateTextLabel("<", pl.transform, out var tmp2);;
 
             // Page Right
             GameObject pr = GameObject.CreatePrimitive(PrimitiveType.Cube);
@@ -123,8 +126,8 @@ namespace MonkeHavoc.Panel
             pr.transform.localRotation = Quaternion.identity;
             pr.GetComponent<BoxCollider>().isTrigger = true;
             pr.AddComponent<ButtonClass>().mystringtorunitallllllllllllllll = "PageRight";
-            GameObject pageRightTextObj = CreateTextLabel(">", pr.transform);
-
+            GameObject pageRightTextObj = CreateTextLabel(">", pr.transform, out var tmp3);
+            
             // Home Button
             GameObject hb = GameObject.CreatePrimitive(PrimitiveType.Cube);
             hb.GetComponent<Renderer>().material.shader = Shader.Find("GorillaTag/UberShader");
@@ -135,7 +138,7 @@ namespace MonkeHavoc.Panel
             hb.transform.localRotation = Quaternion.identity;
             hb.GetComponent<BoxCollider>().isTrigger = true;
             hb.AddComponent<ButtonClass>().mystringtorunitallllllllllllllll = "Home";
-            GameObject homeTextObj = CreateTextLabel("Go Home", hb.transform);
+            GameObject homeTextObj = CreateTextLabel("Go Home", hb.transform, out var tmp4);
             
             // Buttons get automatically created for EFFICIENCY
             for (int categoryIndex = 0; categoryIndex < categories.Length; categoryIndex++)
@@ -162,14 +165,14 @@ namespace MonkeHavoc.Panel
             button.GetComponent<Renderer>().material.color = otherpurp;
             button.GetComponent<BoxCollider>().isTrigger = true;
             button.AddComponent<ButtonClass>().mystringtorunitallllllllllllllll = text;
-            GameObject buttonTextObj = CreateTextLabel(text, button.transform);
+            GameObject buttonTextObj = CreateTextLabel(text, button.transform, out var tmp5, 1f);
             
 
             categories[categoryIndex][buttonIndex].butObj = button;
             categories[categoryIndex][buttonIndex].texObj = buttonTextObj;
         }
         
-        static GameObject CreateTextLabel(string text, Transform parent)
+        static GameObject CreateTextLabel(string text, Transform parent, out TextMeshPro tmp, float size = 2f)
         {
             GameObject go = new GameObject("TMP_" + text);
             go.transform.SetParent(panel.transform);
@@ -177,9 +180,9 @@ namespace MonkeHavoc.Panel
             go.transform.localRotation = Quaternion.Euler(180f, 90f, 90f);
             go.transform.localScale = Vector3.one;
 
-            var tmp = go.AddComponent<TextMeshPro>();
+            tmp = go.AddComponent<TextMeshPro>();
             tmp.text = text;
-            tmp.fontSize = 2f;
+            tmp.fontSize = size;
             tmp.color = Color.white;
             tmp.alignment = TextAlignmentOptions.Center;
             tmp.enableAutoSizing = false;
@@ -250,6 +253,7 @@ namespace MonkeHavoc.Panel
             {
                 currentPage = 0;
                 currentCategory = 0;
+                currentCategoryName = "Home";
                 UpdateButtons();
             }
             else
@@ -266,6 +270,7 @@ namespace MonkeHavoc.Panel
                                 if (button.on)
                                 {
                                     button.enable?.Invoke();
+                                    button.butObj.GetComponent<Renderer>().enabled = false;
                                     if (button.foreverOrOnce != null)
                                     {
                                         toInvoke.Add(button);
@@ -274,6 +279,7 @@ namespace MonkeHavoc.Panel
                                 else
                                 {
                                     button.disable?.Invoke();
+                                    button.butObj.GetComponent<Renderer>().enabled = true;
                                     if (button.foreverOrOnce != null)
                                     {
                                         toInvoke.Remove(button);
