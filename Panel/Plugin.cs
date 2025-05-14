@@ -59,6 +59,10 @@ namespace MonkeHavoc.Panel
                                 button.disable?.Invoke();
                                 button.butObj.GetComponent<Renderer>().enabled = true;
                                 button.on = false;
+                                if (toInvoke.Contains(button))
+                                {
+                                    toInvoke.Remove(button);
+                                }
                             }
                         }
                     }
@@ -82,6 +86,10 @@ namespace MonkeHavoc.Panel
                             button.disable?.Invoke();
                             button.butObj.GetComponent<Renderer>().enabled = true;
                             button.on = false;
+                            if (toInvoke.Contains(button))
+                            {
+                                toInvoke.Remove(button);
+                            }
                         }
                     }
                 }
@@ -139,7 +147,8 @@ namespace MonkeHavoc.Panel
             cs.transform.localPosition = new Vector3(0.3f, 0f, 0.35f);
             cs.transform.localRotation = Quaternion.identity;
             Destroy(cs.GetComponent<BoxCollider>());
-            GameObject csTextObj = CreateTextLabel(currentCategoryName, cs.transform, out TextMeshPro textMeshPro, 1.5f);
+            GameObject csTextObj =
+                CreateTextLabel(currentCategoryName, cs.transform, out TextMeshPro textMeshPro, 1.5f);
             toChangeOnUpdateButtons = textMeshPro;
 
             // Page Left
@@ -152,7 +161,8 @@ namespace MonkeHavoc.Panel
             pl.transform.localRotation = Quaternion.identity;
             pl.GetComponent<BoxCollider>().isTrigger = true;
             pl.AddComponent<ButtonClass>().mystringtorunitallllllllllllllll = "PageLeft";
-            GameObject pageLeftTextObj = CreateTextLabel("<", pl.transform, out var tmp2);;
+            GameObject pageLeftTextObj = CreateTextLabel("<", pl.transform, out var tmp2);
+            ;
 
             // Page Right
             GameObject pr = GameObject.CreatePrimitive(PrimitiveType.Cube);
@@ -166,7 +176,7 @@ namespace MonkeHavoc.Panel
             pr.GetComponent<BoxCollider>().isTrigger = true;
             pr.AddComponent<ButtonClass>().mystringtorunitallllllllllllllll = "PageRight";
             GameObject pageRightTextObj = CreateTextLabel(">", pr.transform, out var tmp3);
-            
+
             // Home Button
             GameObject hb = GameObject.CreatePrimitive(PrimitiveType.Cube);
             hb.GetComponent<Renderer>().material.shader = Shader.Find("GorillaTag/UberShader");
@@ -178,7 +188,7 @@ namespace MonkeHavoc.Panel
             hb.GetComponent<BoxCollider>().isTrigger = true;
             hb.AddComponent<ButtonClass>().mystringtorunitallllllllllllllll = "Home";
             GameObject homeTextObj = CreateTextLabel("Go Home", hb.transform, out var tmp4);
-            
+
             // Buttons get automatically created for EFFICIENCY
             for (int categoryIndex = 0; categoryIndex < categories.Length; categoryIndex++)
             {
@@ -189,9 +199,10 @@ namespace MonkeHavoc.Panel
                     CreateButton(offset, category[buttonIndex].textOnButton, buttonIndex, categoryIndex);
                 }
             }
+
             UpdateButtons();
         }
-        
+
         private static void CreateButton(float offset, string text, int buttonIndex, int categoryIndex)
         {
             GameObject button = GameObject.CreatePrimitive(PrimitiveType.Cube);
@@ -205,17 +216,18 @@ namespace MonkeHavoc.Panel
             button.GetComponent<BoxCollider>().isTrigger = true;
             button.AddComponent<ButtonClass>().mystringtorunitallllllllllllllll = text;
             GameObject buttonTextObj = CreateTextLabel(text, button.transform, out var tmp5, 1f);
-            
+
 
             categories[categoryIndex][buttonIndex].butObj = button;
             categories[categoryIndex][buttonIndex].texObj = buttonTextObj;
         }
-        
+
         static GameObject CreateTextLabel(string text, Transform parent, out TextMeshPro tmp, float size = 2f)
         {
             GameObject go = new GameObject("TMP_" + text);
             go.transform.SetParent(panel.transform);
-            go.transform.localPosition = new Vector3(parent.localPosition.x + 0.501f, parent.localPosition.y, parent.localPosition.z);
+            go.transform.localPosition = new Vector3(parent.localPosition.x + 0.501f, parent.localPosition.y,
+                parent.localPosition.z);
             go.transform.localRotation = Quaternion.Euler(180f, 90f, 90f);
             go.transform.localScale = Vector3.one;
 
@@ -336,7 +348,7 @@ namespace MonkeHavoc.Panel
                 }
             }
         }
-        
+
         public static void UpdateButtons()
         {
             int currentCategoryIndex = 0;

@@ -5,22 +5,23 @@ using UnityEngine;
 
 namespace MonkeHavoc.Modules.Spawners
 {
-    public class CylinderSpammer
+    public class CylinderSpawner
     {
         private static Gun gun = new Gun();
         private static List<GameObject> cylinders = new List<GameObject>();
-        private static float lastTime = 0f;
+        private static bool isPressed;
 
         public static void ThisWillRunFOREVER()
         {
             gun.UpdateGun();
             if (ControllerInputPoller.instance.rightGrab)
             {
-                if (Time.time > lastTime && ControllerInputPoller.instance.rightControllerIndexFloat > 0.5f)
+                if (ControllerInputPoller.instance.rightControllerIndexFloat > 0.5f && !isPressed)
                 {
-                    lastTime = Time.time + 0.05f;
                     CreateCylinder(gun.hit.point);
                 }
+
+                isPressed = ControllerInputPoller.instance.rightControllerIndexFloat > 0.5f;
             }
         }
 
@@ -41,9 +42,10 @@ namespace MonkeHavoc.Modules.Spawners
             {
                 GameObject.Destroy(cylinder);
             }
+
             cylinders.Clear();
         }
-        
+
         private static void CreateCylinder(Vector3 position)
         {
             GameObject cylinder = GameObject.CreatePrimitive(PrimitiveType.Cylinder);

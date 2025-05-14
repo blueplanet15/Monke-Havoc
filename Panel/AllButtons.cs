@@ -4,6 +4,8 @@ using MonkeHavoc.Modules.Guns;
 using MonkeHavoc.Modules.Horror;
 using MonkeHavoc.Modules.Movement;
 using MonkeHavoc.Modules.Multiplayer;
+using MonkeHavoc.Modules.Spawners;
+using MonkeHavoc.Modules.Visual;
 
 namespace MonkeHavoc.Panel
 {
@@ -119,10 +121,60 @@ namespace MonkeHavoc.Panel
 
             new MonkeHavocModule[] // Visual
             {
+                new MonkeHavocModule()
+                    { textOnButton = "Day", toggle = false, foreverOrOnce = () => TimeChangersAndEverything.Day() },
+                new MonkeHavocModule()
+                {
+                    textOnButton = "Evening", toggle = false, foreverOrOnce = () => TimeChangersAndEverything.Evening()
+                },
+                new MonkeHavocModule()
+                {
+                    textOnButton = "Morning", toggle = false, foreverOrOnce = () => TimeChangersAndEverything.Morning()
+                },
+                new MonkeHavocModule()
+                    { textOnButton = "Night", toggle = false, foreverOrOnce = () => TimeChangersAndEverything.Night() },
+                new MonkeHavocModule()
+                    { textOnButton = "Rain", toggle = false, foreverOrOnce = () => TimeChangersAndEverything.Rain() },
+                new MonkeHavocModule()
+                {
+                    textOnButton = "No Rain", toggle = false, foreverOrOnce = () => TimeChangersAndEverything.NoRain()
+                },
             },
 
             new MonkeHavocModule[] // Spawners
             {
+                new MonkeHavocModule()
+                    { textOnButton = "Remove All", toggle = false, foreverOrOnce = () => RemoveAll.ExecuteAllOfThem() },
+                new MonkeHavocModule()
+                {
+                    textOnButton = "Cube Spam", foreverOrOnce = () => CubeSpammer.ThisWillRunFOREVER(),
+                    enable = () => CubeSpammer.Enable(), disable = CubeSpammer.Disable
+                },
+                new MonkeHavocModule()
+                {
+                    textOnButton = "Cube", foreverOrOnce = () => CubeSpawner.ThisWillRunFOREVER(),
+                    enable = () => CubeSpawner.Enable(), disable = CubeSpawner.Disable
+                },
+                new MonkeHavocModule()
+                {
+                    textOnButton = "Cylinder Spam", foreverOrOnce = () => CylinderSpammer.ThisWillRunFOREVER(),
+                    enable = () => CylinderSpammer.Enable(), disable = CylinderSpammer.Disable
+                },
+                new MonkeHavocModule()
+                {
+                    textOnButton = "Cylinder", foreverOrOnce = () => CylinderSpawner.ThisWillRunFOREVER(),
+                    enable = () => CylinderSpawner.Enable(), disable = CylinderSpawner.Disable
+                },
+                new MonkeHavocModule()
+                {
+                    textOnButton = "Sphere Spam", foreverOrOnce = () => SphereSpammer.ThisWillRunFOREVER(),
+                    enable = () => SphereSpammer.Enable(), disable = SphereSpammer.Disable
+                },
+                new MonkeHavocModule()
+                {
+                    textOnButton = "Sphere", foreverOrOnce = () => SphereSpawner.ThisWillRunFOREVER(),
+                    enable = () => SphereSpawner.Enable(), disable = SphereSpawner.Disable
+                },
             },
 
             new MonkeHavocModule[] // Horror
