@@ -87,7 +87,7 @@ namespace MonkeHavoc.Panel
             titlePhysicalObj.transform.localPosition = new Vector3(0f, 0f, 0.7f);
             titlePhysicalObj.transform.localRotation = Quaternion.identity;
             Destroy(titlePhysicalObj.GetComponent<BoxCollider>());
-            GameObject titleTextObj = CreateTextLabel("MonkeHavoc", titlePhysicalObj.transform, new Vector3(0.501f, 0f, 0f));
+            GameObject titleTextObj = CreateTextLabel("MonkeHavoc", titlePhysicalObj.transform);
 
             // Category Shower
             GameObject cs = GameObject.CreatePrimitive(PrimitiveType.Cube);
@@ -98,7 +98,7 @@ namespace MonkeHavoc.Panel
             cs.transform.localPosition = new Vector3(0.3f, 0f, 0.35f);
             cs.transform.localRotation = Quaternion.identity;
             Destroy(cs.GetComponent<BoxCollider>());
-            GameObject csTextObj = CreateTextLabel("CATEGORY", cs.transform, new Vector3(0.501f, 0f, 0f));
+            GameObject csTextObj = CreateTextLabel("CATEGORY", cs.transform);
 
             // Page Left
             GameObject pl = GameObject.CreatePrimitive(PrimitiveType.Cube);
@@ -110,7 +110,7 @@ namespace MonkeHavoc.Panel
             pl.transform.localRotation = Quaternion.identity;
             pl.GetComponent<BoxCollider>().isTrigger = true;
             pl.AddComponent<ButtonClass>().mystringtorunitallllllllllllllll = "PageLeft";
-            GameObject pageLeftTextObj = CreateTextLabel("<", pl.transform, new Vector3(0.501f, 0f, 0f));
+            GameObject pageLeftTextObj = CreateTextLabel("<", pl.transform);
 
             // Page Right
             GameObject pr = GameObject.CreatePrimitive(PrimitiveType.Cube);
@@ -123,7 +123,7 @@ namespace MonkeHavoc.Panel
             pr.transform.localRotation = Quaternion.identity;
             pr.GetComponent<BoxCollider>().isTrigger = true;
             pr.AddComponent<ButtonClass>().mystringtorunitallllllllllllllll = "PageRight";
-            GameObject pageRightTextObj = CreateTextLabel(">", pr.transform, new Vector3(0.501f, 0f, 0f));
+            GameObject pageRightTextObj = CreateTextLabel(">", pr.transform);
 
             // Home Button
             GameObject hb = GameObject.CreatePrimitive(PrimitiveType.Cube);
@@ -135,7 +135,7 @@ namespace MonkeHavoc.Panel
             hb.transform.localRotation = Quaternion.identity;
             hb.GetComponent<BoxCollider>().isTrigger = true;
             hb.AddComponent<ButtonClass>().mystringtorunitallllllllllllllll = "Home";
-            GameObject homeTextObj = CreateTextLabel("Go Home", hb.transform, new Vector3(0.501f, 0f, 0f));
+            GameObject homeTextObj = CreateTextLabel("Go Home", hb.transform);
             
             // Buttons get automatically created for EFFICIENCY
             for (int categoryIndex = 0; categoryIndex < categories.Length; categoryIndex++)
@@ -162,18 +162,18 @@ namespace MonkeHavoc.Panel
             button.GetComponent<Renderer>().material.color = otherpurp;
             button.GetComponent<BoxCollider>().isTrigger = true;
             button.AddComponent<ButtonClass>().mystringtorunitallllllllllllllll = text;
-            GameObject buttonTextObj = CreateTextLabel(text, button.transform, new Vector3(0.501f, 0f, 0f));
+            GameObject buttonTextObj = CreateTextLabel(text, button.transform);
             
 
             categories[categoryIndex][buttonIndex].butObj = button;
             categories[categoryIndex][buttonIndex].texObj = buttonTextObj;
         }
         
-        static GameObject CreateTextLabel(string text, Transform parent, Vector3 localPosition)
+        static GameObject CreateTextLabel(string text, Transform parent)
         {
             GameObject go = new GameObject("TMP_" + text);
-            go.transform.SetParent(parent);
-            go.transform.localPosition = localPosition;
+            go.transform.SetParent(panel.transform);
+            go.transform.localPosition = new Vector3(parent.localPosition.x + 0.501f, parent.localPosition.y, parent.localPosition.z);
             go.transform.localRotation = Quaternion.Euler(180f, 90f, 90f);
             go.transform.localScale = Vector3.one;
 
