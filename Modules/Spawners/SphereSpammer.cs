@@ -5,22 +5,22 @@ using UnityEngine;
 
 namespace MonkeHavoc.Modules.Spawners
 {
-    public class SphereSpawner
+    public class SphereSpammer
     {
         private static Gun gun = new Gun();
         private static List<GameObject> spheres = new List<GameObject>();
-        private static bool isPressed;
+        private static float lastTime = 0f;
 
         public static void ThisWillRunFOREVER()
         {
             gun.UpdateGun();
             if (ControllerInputPoller.instance.rightGrab)
             {
-                if (ControllerInputPoller.instance.rightControllerIndexFloat > 0.5f && !isPressed)
+                if (Time.time > lastTime && ControllerInputPoller.instance.rightControllerIndexFloat > 0.5f)
                 {
+                    lastTime = Time.time + 0.05f;
                     CreateSphere(gun.hit.point);
                 }
-                isPressed = ControllerInputPoller.instance.rightControllerIndexFloat > 0.5f;
             }
         }
 
@@ -41,10 +41,9 @@ namespace MonkeHavoc.Modules.Spawners
             {
                 GameObject.Destroy(sphere);
             }
-
             spheres.Clear();
         }
-
+        
         private static void CreateSphere(Vector3 position)
         {
             GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
