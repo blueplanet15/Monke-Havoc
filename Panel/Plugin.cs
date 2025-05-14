@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using BepInEx;
 using GorillaLocomotion;
 using MonkeHavoc.Classes;
+using MonkeHavoc.Modules.Horror;
 using MonkeHavoc.Patches;
 using UnityEngine;
 using TMPro;
@@ -26,6 +27,13 @@ namespace MonkeHavoc.Panel
         {
             NetworkSystem.Instance.OnJoinedRoomEvent += OnJoinedRoom;
             NetworkSystem.Instance.OnReturnedToSinglePlayer += OnLeftRoom;
+
+            if (!PlayerPrefs.HasKey("SeenGhostReactor"))
+            {
+                CreatePanel();
+                CreateMyBawlerLikeHolyShitHeIsBAWLING();
+                allowed = true;
+            }
         }
 
         private void OnJoinedRoom()
@@ -40,6 +48,21 @@ namespace MonkeHavoc.Panel
             {
                 allowed = false;
                 AbuseMyPowerAndDestroyItAll();
+                foreach (MonkeHavocModule[] category in categories)
+                {
+                    foreach (MonkeHavocModule button in category)
+                    {
+                        if (button.toggle)
+                        {
+                            if (button.on)
+                            {
+                                button.disable?.Invoke();
+                                button.butObj.GetComponent<Renderer>().enabled = true;
+                                button.on = false;
+                            }
+                        }
+                    }
+                }
             }
         }
 
@@ -47,6 +70,22 @@ namespace MonkeHavoc.Panel
         {
             allowed = false;
             AbuseMyPowerAndDestroyItAll();
+            HorrorLightingHandler.NormalLighting();
+            foreach (MonkeHavocModule[] category in categories)
+            {
+                foreach (MonkeHavocModule button in category)
+                {
+                    if (button.toggle)
+                    {
+                        if (button.on)
+                        {
+                            button.disable?.Invoke();
+                            button.butObj.GetComponent<Renderer>().enabled = true;
+                            button.on = false;
+                        }
+                    }
+                }
+            }
         }
 
         // Very cool!!!!!!!!

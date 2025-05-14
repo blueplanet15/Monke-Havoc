@@ -26,6 +26,9 @@
     <Reference Include="Cinemachine">
       <HintPath>$(GameAssemblyPath)\Cinemachine.dll</HintPath>
     </Reference>
+    <Reference Include="Fusion.Runtime">
+      <HintPath>$(GameAssemblyPath)\Fusion.Runtime.dll</HintPath>
+    </Reference>
     <Reference Include="Mono.Security">
       <HintPath>$(GameAssemblyPath)\Mono.Security.dll</HintPath>
     </Reference>
@@ -278,5 +281,12 @@
     <Reference Include="websocket-sharp">
       <HintPath>$(GameAssemblyPath)\websocket-sharp.dll</HintPath>
     </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Modules\Multiplayer\" />
+    <Folder Include="Modules\Settings\" />
+    <Folder Include="Modules\Spawners\" />
+    <Folder Include="Modules\Visual\" />
   </ItemGroup>
 </Project>
