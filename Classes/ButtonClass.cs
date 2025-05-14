@@ -18,6 +18,7 @@ namespace MonkeHavoc.Classes
                 Plugin.RunAwayWithMeWoHoooooooooooo(mystringtorunitallllllllllllllll);
                 GorillaTagger.Instance.offlineVRRig.PlayHandTapLocal(62, false, 0.5f);
                 lastimetimetimetime = Time.time + 0.5f;
+                GorillaTagger.Instance.StartVibration(false, 0.7f, 0.3f);
             }
         }
     }

@@ -57,7 +57,7 @@ namespace MonkeHavoc.Panel
         public static int currentPage = 0;
         public static int currentCategory = 0;
         private static int buttonsPerPageYey = 5;
-        private static List<MonkeHavocModule> toInvoke;
+        private static List<MonkeHavocModule> toInvoke = new List<MonkeHavocModule>();
 
         private static void CreatePanel()
         {
@@ -87,18 +87,7 @@ namespace MonkeHavoc.Panel
             titlePhysicalObj.transform.localPosition = new Vector3(0f, 0f, 0.7f);
             titlePhysicalObj.transform.localRotation = Quaternion.identity;
             Destroy(titlePhysicalObj.GetComponent<BoxCollider>());
-
-            GameObject titleTextObj = new GameObject("TitleText");
-            titleTextObj.transform.SetParent(panel.transform);
-            titleTextObj.transform.localRotation = Quaternion.Euler(180f, 90f, 90f);
-            titleTextObj.transform.localPosition = new Vector3(titlePhysicalObj.transform.localPosition.x + 0.501f,
-                titlePhysicalObj.transform.localPosition.y, titlePhysicalObj.transform.localPosition.z);
-
-            TextMeshPro textMeshPro = titleTextObj.AddComponent<TextMeshPro>();
-            textMeshPro.text = "Monke Havoc";
-            textMeshPro.fontSize = 0.45f;
-            textMeshPro.alignment = TextAlignmentOptions.Center;
-            textMeshPro.color = Color.white;
+            GameObject titleTextObj = CreateTextLabel("MonkeHavoc", titlePhysicalObj.transform, new Vector3(0.501f, 0f, 0f));
 
             // Category Shower
             GameObject cs = GameObject.CreatePrimitive(PrimitiveType.Cube);
@@ -109,18 +98,7 @@ namespace MonkeHavoc.Panel
             cs.transform.localPosition = new Vector3(0.3f, 0f, 0.35f);
             cs.transform.localRotation = Quaternion.identity;
             Destroy(cs.GetComponent<BoxCollider>());
-
-            GameObject categoryShowerTextObj = new GameObject("CategoryShowerText");
-            categoryShowerTextObj.transform.SetParent(panel.transform);
-            categoryShowerTextObj.transform.localRotation = Quaternion.Euler(180f, 90f, 90f);
-            categoryShowerTextObj.transform.localPosition = new Vector3(cs.transform.localPosition.x + 0.501f,
-                cs.transform.localPosition.y, cs.transform.localPosition.z);
-
-            TextMeshPro textMeshPro4 = categoryShowerTextObj.AddComponent<TextMeshPro>();
-            textMeshPro4.text = "CATEGORY";
-            textMeshPro4.fontSize = 0.45f;
-            textMeshPro4.alignment = TextAlignmentOptions.Center;
-            textMeshPro4.color = Color.white;
+            GameObject csTextObj = CreateTextLabel("CATEGORY", cs.transform, new Vector3(0.501f, 0f, 0f));
 
             // Page Left
             GameObject pl = GameObject.CreatePrimitive(PrimitiveType.Cube);
@@ -132,18 +110,7 @@ namespace MonkeHavoc.Panel
             pl.transform.localRotation = Quaternion.identity;
             pl.GetComponent<BoxCollider>().isTrigger = true;
             pl.AddComponent<ButtonClass>().mystringtorunitallllllllllllllll = "PageLeft";
-
-            GameObject pageLeftTextObj = new GameObject("PageLeftText");
-            pageLeftTextObj.transform.SetParent(panel.transform);
-            pageLeftTextObj.transform.localRotation = Quaternion.Euler(180f, 90f, 90f);
-            pageLeftTextObj.transform.localPosition = new Vector3(pl.transform.localPosition.x + 0.501f,
-                pl.transform.localPosition.y, pl.transform.localPosition.z);
-
-            TextMeshPro textMeshPro1 = pageLeftTextObj.AddComponent<TextMeshPro>();
-            textMeshPro1.text = "<";
-            textMeshPro1.fontSize = 0.45f;
-            textMeshPro1.alignment = TextAlignmentOptions.Center;
-            textMeshPro1.color = Color.white;
+            GameObject pageLeftTextObj = CreateTextLabel("<", pl.transform, new Vector3(0.501f, 0f, 0f));
 
             // Page Right
             GameObject pr = GameObject.CreatePrimitive(PrimitiveType.Cube);
@@ -156,18 +123,7 @@ namespace MonkeHavoc.Panel
             pr.transform.localRotation = Quaternion.identity;
             pr.GetComponent<BoxCollider>().isTrigger = true;
             pr.AddComponent<ButtonClass>().mystringtorunitallllllllllllllll = "PageRight";
-
-            GameObject pageRightTextObj = new GameObject("PageRightText");
-            pageRightTextObj.transform.SetParent(panel.transform);
-            pageRightTextObj.transform.localRotation = Quaternion.Euler(180f, 90f, 90f);
-            pageRightTextObj.transform.localPosition = new Vector3(pr.transform.localPosition.x + 0.501f,
-                pr.transform.localPosition.y, pr.transform.localPosition.z);
-
-            TextMeshPro textMeshPro2 = pageRightTextObj.AddComponent<TextMeshPro>();
-            textMeshPro2.text = ">";
-            textMeshPro2.fontSize = 0.45f;
-            textMeshPro2.alignment = TextAlignmentOptions.Center;
-            textMeshPro2.color = Color.white;
+            GameObject pageRightTextObj = CreateTextLabel(">", pr.transform, new Vector3(0.501f, 0f, 0f));
 
             // Home Button
             GameObject hb = GameObject.CreatePrimitive(PrimitiveType.Cube);
@@ -179,18 +135,7 @@ namespace MonkeHavoc.Panel
             hb.transform.localRotation = Quaternion.identity;
             hb.GetComponent<BoxCollider>().isTrigger = true;
             hb.AddComponent<ButtonClass>().mystringtorunitallllllllllllllll = "Home";
-
-            GameObject homeButtonTextObj = new GameObject("HomeText");
-            homeButtonTextObj.transform.SetParent(panel.transform);
-            homeButtonTextObj.transform.localRotation = Quaternion.Euler(180f, 90f, 90f);
-            homeButtonTextObj.transform.localPosition = new Vector3(hb.transform.localPosition.x + 0.501f,
-                hb.transform.localPosition.y, hb.transform.localPosition.z);
-
-            TextMeshPro textMeshPro3 = homeButtonTextObj.AddComponent<TextMeshPro>();
-            textMeshPro3.text = "Go Home";
-            textMeshPro3.fontSize = 0.45f;
-            textMeshPro3.alignment = TextAlignmentOptions.Center;
-            textMeshPro3.color = Color.white;
+            GameObject homeTextObj = CreateTextLabel("Go Home", hb.transform, new Vector3(0.501f, 0f, 0f));
             
             // Buttons get automatically created for EFFICIENCY
             for (int categoryIndex = 0; categoryIndex < categories.Length; categoryIndex++)
@@ -211,27 +156,35 @@ namespace MonkeHavoc.Panel
             button.name = text;
             button.transform.SetParent(panel.transform);
             button.transform.localRotation = Quaternion.identity;
-            button.transform.localScale = new Vector3(0.9f, 0.18f, 0.12f);
-            button.transform.localPosition = new Vector3(0.6f, -0.38f, 0.35f - offset);
+            button.transform.localScale = new Vector3(0.9f, 0.9f, 0.12f);
+            button.transform.localPosition = new Vector3(0.2f, 0f, 0.15f - offset);
             button.GetComponent<Renderer>().material.shader = Shader.Find("GorillaTag/UberShader");
             button.GetComponent<Renderer>().material.color = otherpurp;
             button.GetComponent<BoxCollider>().isTrigger = true;
             button.AddComponent<ButtonClass>().mystringtorunitallllllllllllllll = text;
+            GameObject buttonTextObj = CreateTextLabel(text, button.transform, new Vector3(0.501f, 0f, 0f));
             
-            GameObject buttonTextObj = new GameObject("ButtonText");
-            buttonTextObj.transform.SetParent(panel.transform);
-            buttonTextObj.transform.localRotation = Quaternion.Euler(180f, 90f, 90f);
-            buttonTextObj.transform.localPosition = new Vector3(button.transform.localPosition.x + 0.501f,
-                button.transform.localPosition.y, button.transform.localPosition.z);
-
-            TextMeshPro textMeshPro = buttonTextObj.AddComponent<TextMeshPro>();
-            textMeshPro.text = text;
-            textMeshPro.fontSize = 0.45f;
-            textMeshPro.alignment = TextAlignmentOptions.Center;
-            textMeshPro.color = Color.white;
 
             categories[categoryIndex][buttonIndex].butObj = button;
             categories[categoryIndex][buttonIndex].texObj = buttonTextObj;
+        }
+        
+        static GameObject CreateTextLabel(string text, Transform parent, Vector3 localPosition)
+        {
+            GameObject go = new GameObject("TMP_" + text);
+            go.transform.SetParent(parent);
+            go.transform.localPosition = localPosition;
+            go.transform.localRotation = Quaternion.Euler(180f, 90f, 90f);
+            go.transform.localScale = Vector3.one;
+
+            var tmp = go.AddComponent<TextMeshPro>();
+            tmp.text = text;
+            tmp.fontSize = 0.45f;
+            tmp.color = Color.white;
+            tmp.alignment = TextAlignmentOptions.Center;
+            tmp.enableAutoSizing = false;
+
+            return go;
         }
 
         private static void CreateMyBawlerLikeHolyShitHeIsBAWLING()
