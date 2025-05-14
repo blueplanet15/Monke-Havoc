@@ -279,9 +279,4 @@
       <HintPath>$(GameAssemblyPath)\websocket-sharp.dll</HintPath>
     </Reference>
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Classes\" />
-    <Folder Include="Modules\" />
-  </ItemGroup>
 </Project>
