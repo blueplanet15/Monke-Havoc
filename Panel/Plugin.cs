@@ -228,18 +228,18 @@ namespace MonkeHavoc.Panel
                 for (int buttonIndex = 0; buttonIndex < category.Length; buttonIndex++)
                 {
                     float offset = 0.15f * (buttonIndex % buttonsPerPageYey);
-                    CreateButton(offset, category[buttonIndex].textOnButton, buttonIndex, categoryIndex);
+                    CreateButton(offset, category[buttonIndex].textOnButton, buttonIndex, categoryIndex, panel.transform);
                 }
             }
 
             UpdateButtons();
         }
 
-        private static void CreateButton(float offset, string text, int buttonIndex, int categoryIndex)
+        private static void CreateButton(float offset, string text, int buttonIndex, int categoryIndex, Transform parent)
         {
             GameObject button = GameObject.CreatePrimitive(PrimitiveType.Cube);
             button.name = text;
-            button.transform.SetParent(panel.transform);
+            button.transform.SetParent(parent);
             button.transform.localRotation = Quaternion.identity;
             button.transform.localScale = new Vector3(1f, 0.85f, 0.12f);
             button.transform.localPosition = new Vector3(0.4f, 0f, 0.2f - offset);
@@ -257,7 +257,7 @@ namespace MonkeHavoc.Panel
         static GameObject CreateTextLabel(string text, Transform parent, out TextMeshPro tmp, float size = 2f)
         {
             GameObject go = new GameObject("TMP_" + text);
-            go.transform.SetParent(panel.transform);
+            go.transform.SetParent(parent.parent);
             go.transform.localPosition = new Vector3(parent.localPosition.x + 0.501f, parent.localPosition.y,
                 parent.localPosition.z);
             go.transform.localRotation = Quaternion.Euler(180f, 90f, 90f);
@@ -516,6 +516,22 @@ namespace MonkeHavoc.Panel
                 IGetCaughtIThink();
             }
         }
+        
+        private static void WannabeCreateButton(float offset, string text, Transform parent)
+        {
+            GameObject button = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            button.name = text;
+            button.transform.SetParent(parent);
+            button.transform.localRotation = Quaternion.identity;
+            button.transform.localScale = new Vector3(1f, 0.85f, 0.12f);
+            button.transform.localPosition = new Vector3(0.4f, 0f, 0.2f - offset);
+            button.GetComponent<Renderer>().material.shader = Shader.Find("GorillaTag/UberShader");
+            button.GetComponent<Renderer>().material.color = otherpurp;
+            button.GetComponent<BoxCollider>().isTrigger = true;
+            button.AddComponent<ButtonClass>().mystringtorunitallllllllllllllll = text;
+            button.SetActive(true);
+            GameObject buttonTextObj = CreateTextLabel(text, button.transform, out var tmp5, 1f);
+        }
 
         private static bool shouldUpdateProps = true;
         private static List<GameObject> panels = new List<GameObject>();
@@ -560,11 +576,14 @@ namespace MonkeHavoc.Panel
                             {
                                 if (!customProps.ContainsKey(rig.OwningNetPlayer.UserId))
                                 {
-                                    customProps.Add(rig.OwningNetPlayer.UserId, rig.OwningNetPlayer.GetPlayerRef().CustomProperties);
+                                    customProps.Add(rig.OwningNetPlayer.UserId,
+                                        rig.OwningNetPlayer.GetPlayerRef().CustomProperties);
+                                    break;
                                 }
+
                                 if (customProps[rig.OwningNetPlayer.UserId].ContainsKey("MonkeHavocOpen"))
                                 {
-                                    if (customProps[rig.OwningNetPlayer.UserId]["MonkeHavocOpen"].Equals(true))
+                                    if (rig.OwningNetPlayer.GetPlayerRef().CustomProperties["MonkeHavocOpen"].Equals(true))
                                     {
                                         bool shouldCreate = true;
                                         foreach (GameObject panel in panels)
@@ -572,6 +591,7 @@ namespace MonkeHavoc.Panel
                                             if (panel.name == rig.OwningNetPlayer.UserId)
                                             {
                                                 shouldCreate = false;
+                                                panel.SetActive(true);
                                                 break;
                                             }
                                         }
@@ -583,12 +603,89 @@ namespace MonkeHavoc.Panel
                                                 Shader.Find("GorillaTag/UberShader");
                                             panul.GetComponent<Renderer>().material.color = purp;
                                             panul.name = rig.OwningNetPlayer.UserId;
-                                            panul.transform.localScale = new Vector3(0.02f, 0.3f, 0.4f);
+                                            panul.transform.localScale = new Vector3(0.02f, 0.25f, 0.45f);
                                             panul.transform.SetParent(rig.leftHandTransform);
-                                            panul.transform.localPosition = new Vector3(0.06f, 0f, 0f);
-                                            panul.transform.localRotation = Quaternion.identity;
+                                            panul.transform.localPosition = new Vector3(-0.1f, 0.1f, 0.1f);
+                                            panul.transform.localRotation = Quaternion.Euler(180f, 180f, 0f);
                                             Destroy(panul.GetComponent<BoxCollider>());
                                             panels.Add(panul);
+
+                                            GameObject titlePhysicalObj =
+                                                GameObject.CreatePrimitive(PrimitiveType.Cube);
+                                            titlePhysicalObj.GetComponent<Renderer>().material.shader =
+                                                Shader.Find("GorillaTag/UberShader");
+                                            titlePhysicalObj.GetComponent<Renderer>().material.color = otherpurp;
+                                            titlePhysicalObj.transform.SetParent(panul.transform);
+                                            titlePhysicalObj.transform.localScale = new Vector3(1f, 1.25f, 0.2f);
+                                            titlePhysicalObj.transform.localPosition = new Vector3(0f, 0f, 0.7f);
+                                            titlePhysicalObj.transform.localRotation = Quaternion.identity;
+                                            Destroy(titlePhysicalObj.GetComponent<BoxCollider>());
+                                            GameObject titleTextObj = CreateTextLabel("MonkeHavoc",
+                                                titlePhysicalObj.transform, out var tmp, 1.9f);
+                                            
+                                            GameObject cs = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                                            cs.GetComponent<Renderer>().material.shader =
+                                                Shader.Find("GorillaTag/UberShader");
+                                            cs.GetComponent<Renderer>().material.color = (purp + otherpurp) * 0.5f;
+                                            cs.transform.SetParent(panul.transform);
+                                            cs.transform.localScale = new Vector3(1f, 0.9f, 0.15f);
+                                            cs.transform.localPosition = new Vector3(0.6f, 0f, 0.375f);
+                                            cs.transform.localRotation = Quaternion.identity;
+                                            Destroy(cs.GetComponent<BoxCollider>());
+                                            GameObject csTextObj =
+                                                CreateTextLabel(currentCategoryName, cs.transform,
+                                                    out TextMeshPro textMeshPro, 1.5f);
+                                            toChangeOnUpdateButtons = textMeshPro;
+                                            
+                                            GameObject pl = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                                            pl.GetComponent<Renderer>().material.shader =
+                                                Shader.Find("GorillaTag/UberShader");
+                                            pl.GetComponent<Renderer>().material.color = otherpurp;
+                                            pl.transform.SetParent(panul.transform);
+                                            pl.transform.localScale = new Vector3(1f, 0.15f, 0.9f);
+                                            pl.transform.localPosition = new Vector3(0f, 0.65f, 0f);
+                                            pl.transform.localRotation = Quaternion.identity;
+                                            pl.GetComponent<BoxCollider>().isTrigger = true;
+                                            pl.AddComponent<ButtonClass>().mystringtorunitallllllllllllllll =
+                                                "PageLeft";
+                                            GameObject pageLeftTextObj =
+                                                CreateTextLabel("<", pl.transform, out var tmp2);
+                                            
+                                            GameObject pr = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                                            pr.GetComponent<Renderer>().material.shader =
+                                                Shader.Find("GorillaTag/UberShader");
+                                            pr.GetComponent<Renderer>().material.color = otherpurp;
+                                            pr.transform.SetParent(panul.transform);
+                                            pr.transform.localScale = pl.transform.localScale;
+                                            pr.transform.localPosition = new Vector3(pl.transform.localPosition.x,
+                                                -pl.transform.localPosition.y,
+                                                pl.transform.localPosition.z);
+                                            pr.transform.localRotation = Quaternion.identity;
+                                            pr.GetComponent<BoxCollider>().isTrigger = true;
+                                            pr.AddComponent<ButtonClass>().mystringtorunitallllllllllllllll =
+                                                "PageRight";
+                                            GameObject pageRightTextObj =
+                                                CreateTextLabel(">", pr.transform, out var tmp3);
+                                            
+                                            GameObject hb = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                                            hb.GetComponent<Renderer>().material.shader =
+                                                Shader.Find("GorillaTag/UberShader");
+                                            hb.GetComponent<Renderer>().material.color = otherpurp;
+                                            hb.transform.SetParent(panul.transform);
+                                            hb.transform.localScale = new Vector3(1f, 1f, 0.15f);
+                                            hb.transform.localPosition = new Vector3(0f, 0f, -0.65f);
+                                            hb.transform.localRotation = Quaternion.identity;
+                                            hb.GetComponent<BoxCollider>().isTrigger = true;
+                                            hb.AddComponent<ButtonClass>().mystringtorunitallllllllllllllll = "Home";
+                                            GameObject homeTextObj = CreateTextLabel("Go Home", hb.transform,
+                                                out var tmp4, 1.2f);
+                                            
+                                            MonkeHavocModule[] category = categories[0];
+                                            for (int buttonIndex = 0; buttonIndex < buttonsPerPageYey; buttonIndex++)
+                                            {
+                                                float offset = 0.15f * (buttonIndex % buttonsPerPageYey);
+                                                WannabeCreateButton(offset, category[buttonIndex].textOnButton, panul.transform);
+                                            }
                                         }
                                     }
                                     else
