@@ -122,6 +122,11 @@ namespace MonkeHavoc.Panel
                     textOnButton = "Tracers", foreverOrOnce = () => Tracers.ForeverTogether(),
                     disable = () => Tracers.WhenIDisable()
                 },
+                new MonkeHavocModule()
+                {
+                    textOnButton = "Box ESP", foreverOrOnce = () => BoxESP.Forever(),
+                    disable = () => BoxESP.WhenIDisable()
+                },
             },
 
             new MonkeHavocModule[] // Visual

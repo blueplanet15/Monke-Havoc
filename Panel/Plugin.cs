@@ -10,6 +10,7 @@ using MonkeHavoc.Modules.Spawners;
 using MonkeHavoc.Patches;
 using UnityEngine;
 using TMPro;
+using UnityEngine.InputSystem;
 using UnityEngine.XR;
 using static MonkeHavoc.Panel.AllButtons;
 
@@ -56,7 +57,6 @@ namespace MonkeHavoc.Panel
                 allowed = true;
                 GTPlayer.Instance.SetHoverAllowed(true);
                 CreatePanel();
-                CreateMyBawlerLikeHolyShitHeIsBAWLING();
             }
             else
             {
@@ -64,6 +64,7 @@ namespace MonkeHavoc.Panel
                 RemoveAll.ExecuteAllOfThem();
                 AbuseMyPowerAndDestroyItAll();
                 HorrorLightingHandler.NormalLighting();
+                BetterDayNightManager.instance.currentSetting = TimeSettings.Normal;
                 foreach (MonkeHavocModule[] category in categories)
                 {
                     foreach (MonkeHavocModule button in category)
@@ -93,6 +94,17 @@ namespace MonkeHavoc.Panel
             RemoveAll.ExecuteAllOfThem();
             AbuseMyPowerAndDestroyItAll();
             HorrorLightingHandler.NormalLighting();
+            BetterDayNightManager.instance.currentSetting = TimeSettings.Normal;
+            if (pointerBall != null)
+            {
+                Destroy(pointerBall);
+            }
+
+            if (lineRenderer != null)
+            {
+                Destroy(lineRenderer);
+            }
+
             foreach (MonkeHavocModule[] category in categories)
             {
                 foreach (MonkeHavocModule button in category)
@@ -116,7 +128,6 @@ namespace MonkeHavoc.Panel
 
         // Very cool!!!!!!!!
         public static GameObject panel;
-        public static GameObject ball;
         public static Color purp = new Color32(51, 0, 87, 1);
         public static Color otherpurp = new Color32(60, 26, 112, 1);
         public static int currentPage = 0;
@@ -154,7 +165,7 @@ namespace MonkeHavoc.Panel
             titlePhysicalObj.transform.localPosition = new Vector3(0f, 0f, 0.7f);
             titlePhysicalObj.transform.localRotation = Quaternion.identity;
             Destroy(titlePhysicalObj.GetComponent<BoxCollider>());
-            GameObject titleTextObj = CreateTextLabel("MonkeHavoc", titlePhysicalObj.transform, out var tmp);
+            GameObject titleTextObj = CreateTextLabel("MonkeHavoc", titlePhysicalObj.transform, out var tmp, 1.9f);
 
             // Category Shower
             GameObject cs = GameObject.CreatePrimitive(PrimitiveType.Cube);
@@ -180,7 +191,6 @@ namespace MonkeHavoc.Panel
             pl.GetComponent<BoxCollider>().isTrigger = true;
             pl.AddComponent<ButtonClass>().mystringtorunitallllllllllllllll = "PageLeft";
             GameObject pageLeftTextObj = CreateTextLabel("<", pl.transform, out var tmp2);
-            ;
 
             // Page Right
             GameObject pr = GameObject.CreatePrimitive(PrimitiveType.Cube);
@@ -260,44 +270,11 @@ namespace MonkeHavoc.Panel
             return go;
         }
 
-        private static void CreateMyBawlerLikeHolyShitHeIsBAWLING()
-        {
-            // Null Check
-            if (ball != null)
-            {
-                Destroy(ball);
-            }
-
-            // Ball
-            ball = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-            ball.GetComponent<Renderer>().material.shader = Shader.Find("GorillaTag/UberShader");
-            ball.GetComponent<Renderer>().material.color = purp;
-            ball.transform.SetParent(GTPlayer.Instance.rightControllerTransform);
-            ball.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
-            ball.transform.localPosition = new Vector3(0f, -0.1f, 0f);
-            ball.transform.localRotation = Quaternion.identity;
-            if (ball.GetComponent<Rigidbody>() == null)
-            {
-                ball.AddComponent<Rigidbody>().isKinematic = true;
-            }
-            else
-            {
-                ball.GetComponent<Rigidbody>().isKinematic = true;
-            }
-
-            ball.SetActive(false);
-        }
-
         private static void AbuseMyPowerAndDestroyItAll()
         {
             if (panel != null)
             {
                 Destroy(panel);
-            }
-
-            if (ball != null)
-            {
-                Destroy(ball);
             }
         }
 
@@ -401,21 +378,156 @@ namespace MonkeHavoc.Panel
             toChangeOnUpdateButtons.text = currentCategoryName;
         }
 
+        private static void IGetCaughtIThink()
+        {
+            if (pointerBall != null)
+            {
+                Destroy(pointerBall);
+            }
+            
+            pointerBall = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+            pointerBall.GetComponent<Renderer>().material.shader = Shader.Find("GorillaTag/UberShader");
+            pointerBall.GetComponent<Renderer>().material.color = Plugin.purp;
+            pointerBall.transform.localScale = new Vector3(0.02f, 0.02f, 0.02f);
+            Destroy(pointerBall.GetComponent<Collider>());
+            pointerBall.SetActive(false);
+
+            lineRenderer = pointerBall.AddComponent<LineRenderer>();
+            lineRenderer.material.shader = Shader.Find("GorillaTag/UberShader");
+            lineRenderer.startWidth = 0.01f;
+            lineRenderer.endWidth = 0.01f;
+            lineRenderer.positionCount = 2;
+            lineRenderer.enabled = false;
+        }
+
+        private static GameObject pointerBall;
+        private static LineRenderer lineRenderer;
+        private static bool iPress;
+
+        private static void UpdateRaycast()
+        {
+            try
+            {
+                if (XRSettings.isDeviceActive)
+                {
+                    if (Physics.Raycast(GTPlayer.Instance.rightControllerTransform.position,
+                            -GTPlayer.Instance.rightControllerTransform.up, out RaycastHit hitt, Mathf.Infinity,
+                            GTPlayer.Instance.locomotionEnabledLayers))
+                    {
+                        if (!pointerBall.activeSelf)
+                        {
+                            pointerBall.SetActive(true);
+                        }
+
+                        if (!lineRenderer.enabled)
+                        {
+                            lineRenderer.enabled = true;
+                        }
+
+                        pointerBall.transform.position = hitt.point;
+                        lineRenderer.SetPositions(new Vector3[]
+                            { GTPlayer.Instance.rightControllerTransform.position, pointerBall.transform.position });
+                        if (ControllerInputPoller.instance.rightControllerIndexFloat > 0.5f)
+                        {
+                            pointerBall.GetComponent<Renderer>().material.color = otherpurp;
+                            lineRenderer.material.color = otherpurp;
+                        }
+                        else
+                        {
+                            pointerBall.GetComponent<Renderer>().material.color = purp;
+                            lineRenderer.material.color = purp;
+                        }
+
+                        if (ControllerInputPoller.instance.rightControllerIndexFloat > 0.5f && !iPress)
+                        {
+                            if (hitt.collider.gameObject.GetComponent<ButtonClass>() != null)
+                            {
+                                hitt.collider.gameObject.GetComponent<ButtonClass>().OnPress();
+                            }
+                        }
+
+                        iPress = ControllerInputPoller.instance.rightControllerIndexFloat > 0.5f;
+                    }
+                }
+                else // This is for debugging and will be commented out in final release.
+                {
+                    Camera iWantTHISCamera = GorillaTagger.Instance.thirdPersonCamera.transform.GetChild(0).gameObject
+                        .activeInHierarchy
+                        ? GorillaTagger.Instance.thirdPersonCamera.transform.GetChild(0).GetComponent<Camera>()
+                        : GorillaTagger.Instance.mainCamera.GetComponent<Camera>();
+                    if (Physics.Raycast(iWantTHISCamera.ScreenPointToRay(Mouse.current.position.value),
+                            out RaycastHit hitt))
+                    {
+                        if (!pointerBall.activeSelf)
+                        {
+                            pointerBall.SetActive(true);
+                        }
+
+                        if (!lineRenderer.enabled)
+                        {
+                            lineRenderer.enabled = true;
+                        }
+
+                        pointerBall.transform.position = hitt.point;
+                        lineRenderer.SetPositions(new Vector3[]
+                            { GTPlayer.Instance.bodyCollider.transform.position, pointerBall.transform.position });
+                        if (Mouse.current.leftButton.isPressed)
+                        {
+                            pointerBall.GetComponent<Renderer>().material.color = otherpurp;
+                            lineRenderer.material.color = otherpurp;
+                        }
+                        else
+                        {
+                            pointerBall.GetComponent<Renderer>().material.color = purp;
+                            lineRenderer.material.color = purp;
+                        }
+
+                        if (Mouse.current.leftButton.isPressed && !iPress)
+                        {
+                            if (hitt.collider.gameObject.GetComponent<ButtonClass>() != null)
+                            {
+                                hitt.collider.gameObject.GetComponent<ButtonClass>().OnPress();
+                            }
+                        }
+
+                        iPress = Mouse.current.leftButton.isPressed;
+                    }
+                }
+            }
+            catch
+            {
+                IGetCaughtIThink();
+            }
+        }
+
         void FixedUpdate()
         {
             if (allowed)
             {
                 try
                 {
-                    if (ControllerInputPoller.instance.leftControllerSecondaryButton)
+                    if (XRSettings.isDeviceActive)
+                    {
+                        if (ControllerInputPoller.instance.leftControllerSecondaryButton)
+                        {
+                            panel.SetActive(true);
+                            UpdateRaycast();
+                            pointerBall.SetActive(true);
+                        }
+                        else
+                        {
+                            panel.SetActive(false);
+                            pointerBall.SetActive(false);
+                        }
+                    }
+                    else // Same with this, it is for debugging on PC and will be commented out for release.
                     {
                         panel.SetActive(true);
-                        ball.SetActive(true);
-                    }
-                    else
-                    {
-                        panel.SetActive(false);
-                        ball.SetActive(false);
+                        panel.transform.parent = null;
+                        panel.transform.position = Vector3.one;
+                        panel.transform.rotation = Quaternion.Euler(-90f, -90f, 0f);
+                        UpdateRaycast();
+                        pointerBall.SetActive(true);
                     }
 
                     if (toInvoke != null)
@@ -428,7 +540,6 @@ namespace MonkeHavoc.Panel
                 }
                 catch
                 {
-                    CreateMyBawlerLikeHolyShitHeIsBAWLING();
                     CreatePanel();
                 }
             }

@@ -10,16 +10,13 @@ namespace MonkeHavoc.Classes
         public string mystringtorunitallllllllllllllll;
         private static float lastimetimetimetime;
 
-        private void OnTriggerEnter(Collider other)
+        public void OnPress()
         {
             if (lastimetimetimetime > Time.time) return;
-            if (other.gameObject == Plugin.ball)
-            {
-                Plugin.RunAwayWithMeWoHoooooooooooo(mystringtorunitallllllllllllllll);
-                GorillaTagger.Instance.offlineVRRig.PlayHandTapLocal(62, false, 0.5f);
-                lastimetimetimetime = Time.time + 0.2f;
-                GorillaTagger.Instance.StartVibration(false, 0.7f, 0.3f);
-            }
+            GorillaTagger.Instance.offlineVRRig.PlayHandTapLocal(62, false, 0.5f);
+            lastimetimetimetime = Time.time + 0.2f;
+            GorillaTagger.Instance.StartVibration(false, 0.7f, 0.3f);
+            Plugin.RunAwayWithMeWoHoooooooooooo(mystringtorunitallllllllllllllll);
         }
     }
 }

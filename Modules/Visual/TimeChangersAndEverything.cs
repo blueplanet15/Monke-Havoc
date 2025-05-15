@@ -24,17 +24,29 @@ namespace MonkeHavoc.Modules.Visual
 
         public static void Rain()
         {
-            for (int i = 0; i <= BetterDayNightManager.instance.weatherCycle.Length; i++)
+            if (BetterDayNightManager.instance.weatherCycle != null)
             {
-                BetterDayNightManager.instance.weatherCycle[i] = BetterDayNightManager.WeatherType.Raining;
+                for (int i = 0; i <= BetterDayNightManager.instance.weatherCycle.Length; i++)
+                {
+                    if (BetterDayNightManager.instance.weatherCycle[i] != null)
+                    {
+                        BetterDayNightManager.instance.weatherCycle[i] = BetterDayNightManager.WeatherType.Raining;
+                    }
+                }
             }
         }
 
         public static void NoRain()
         {
-            for (int i = 0; i <= BetterDayNightManager.instance.weatherCycle.Length; i++)
+            if (BetterDayNightManager.instance.weatherCycle != null)
             {
-                BetterDayNightManager.instance.weatherCycle[i] = BetterDayNightManager.WeatherType.None;
+                for (int i = 0; i <= BetterDayNightManager.instance.weatherCycle.Length; i++)
+                {
+                    if (BetterDayNightManager.instance.weatherCycle[i] != null)
+                    {
+                        BetterDayNightManager.instance.weatherCycle[i] = BetterDayNightManager.WeatherType.None;
+                    }
+                }
             }
         }
     }
