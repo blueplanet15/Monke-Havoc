@@ -68,8 +68,8 @@ namespace MonkeHavoc.Modules.Movement
         {
             try
             {
-                lSticky.SetActive(false);
-                rSticky.SetActive(false);
+                lSticky.SetActive(Plugin.isSticky.Value);
+                rSticky.SetActive(Plugin.isSticky.Value);
                 
                 if (ControllerInputPoller.instance.leftGrab && !isLeftGrabbing)
                 {
