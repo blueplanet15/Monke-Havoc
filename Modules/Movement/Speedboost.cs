@@ -1,4 +1,5 @@
 using GorillaLocomotion;
+using MonkeHavoc.Panel;
 
 namespace MonkeHavoc.Modules.Movement
 {
@@ -6,8 +7,8 @@ namespace MonkeHavoc.Modules.Movement
     {
         public static void LetsDoThisFAST()
         {
-            GTPlayer.Instance.maxJumpSpeed = 6.5f * 1.3f;
-            GTPlayer.Instance.jumpMultiplier = 1.1f * 1.3f;
+            GTPlayer.Instance.maxJumpSpeed = 6.5f * Plugin.SpeedBoostSpeed.Value;
+            GTPlayer.Instance.jumpMultiplier = 1.1f * Plugin.SpeedBoostSpeed.Value;
         }
     }
 }

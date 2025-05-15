@@ -46,7 +46,7 @@ namespace MonkeHavoc.Modules.Spawners
         
         private static void CreateCube(Vector3 position)
         {
-            GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+            GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
             if (cube.GetComponent<BoxCollider>() == null) cube.AddComponent<BoxCollider>();
             cube.transform.position = position + Vector3.up * 0.5f;
             cube.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
@@ -59,7 +59,7 @@ namespace MonkeHavoc.Modules.Spawners
             cube.layer = 30;
             cubes.Add(cube);
 
-            GameObject dummyCube = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+            GameObject dummyCube = GameObject.CreatePrimitive(PrimitiveType.Cube);
             GameObject.Destroy(dummyCube.GetComponent<Renderer>());
             dummyCube.transform.SetParent(cube.transform, false);
             dummyCube.transform.localPosition = Vector3.zero;

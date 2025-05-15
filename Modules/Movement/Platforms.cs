@@ -32,7 +32,7 @@ namespace MonkeHavoc.Modules.Movement
             Object.Destroy(StickyObj.GetComponent<Renderer>());
             StickyObj.transform.localScale = new Vector3(0.15f, 0.15f, 0.15f);
             StickyObj.transform.SetParent(gameObject.transform, false);
-            StickyObj.SetActive(false);
+            StickyObj.SetActive(Plugin.isSticky.Value);
             return StickyObj;
         }
 

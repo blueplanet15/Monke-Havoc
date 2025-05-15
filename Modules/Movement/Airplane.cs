@@ -1,5 +1,6 @@
 using System;
 using GorillaLocomotion;
+using MonkeHavoc.Panel;
 using UnityEngine;
 
 namespace MonkeHavoc.Modules.Movement
@@ -56,7 +57,7 @@ namespace MonkeHavoc.Modules.Movement
             if (canFlyL && canFlyR)
             {
                 var rb = GTPlayer.Instance.bodyCollider.attachedRigidbody;
-                GTPlayer.Instance.transform.position += GTPlayer.Instance.headCollider.transform.forward * Time.deltaTime * 15;
+                GTPlayer.Instance.transform.position += GTPlayer.Instance.headCollider.transform.forward * Time.deltaTime * Plugin.airplaneSpeed.Value;
                 rb.velocity = Vector3.zero;
             }
         }
