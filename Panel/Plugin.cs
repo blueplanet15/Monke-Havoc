@@ -397,6 +397,7 @@ namespace MonkeHavoc.Panel
 
                 currentCategoryIndex++;
             }
+
             toChangeOnUpdateButtons.text = currentCategoryName;
         }
 

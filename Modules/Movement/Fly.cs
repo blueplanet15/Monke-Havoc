@@ -12,7 +12,7 @@ namespace MonkeHavoc.Modules.Movement
         {
             if (ControllerInputPoller.instance.leftControllerPrimaryButton)
             {
-                GorillaLocomotion.GTPlayer.Instance.transform.position += (GorillaLocomotion.GTPlayer.Instance.headCollider.transform.forward * UnityEngine.Time.deltaTime) * Plugin.flySpeed.Value;
+                GorillaLocomotion.GTPlayer.Instance.transform.position += (GorillaLocomotion.GTPlayer.Instance.headCollider.transform.forward * Time.deltaTime) * Plugin.flySpeed.Value;
                 rb.velocity = Vector3.zero;
             }
         }
