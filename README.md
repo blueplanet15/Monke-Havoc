@@ -1,4 +1,4 @@
-﻿![this thing](https://img.shields.io/github/downloads/HanSolo1000Falcon/Monke-Havoc/total.svg)
+﻿![this thing](https://img.shields.io/github/downloads/HanSolo1OOOFalcon/Monke-Havoc/total.svg)
 # Monke Havoc Mod Panel
 ### Monke Havoc is a modular panel for the popular children's VR game "Gorilla Tag"
 ## Developers/Contributors:
@@ -6,6 +6,8 @@
 * ArielTheMonke - Module Developer/Tester
 * ToastConcern - Module Developer
 * Monky - Module Tester/Teleport Patch Fixer
+
+### [Join the discord server!](https://discord.gg/AcmsZnqUGu)
 ## Features/Modules:
 ### `Movement`:
 * `Airplane`
