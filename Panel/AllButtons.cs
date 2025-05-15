@@ -4,6 +4,7 @@ using MonkeHavoc.Modules.Guns;
 using MonkeHavoc.Modules.Horror;
 using MonkeHavoc.Modules.Movement;
 using MonkeHavoc.Modules.Multiplayer;
+using MonkeHavoc.Modules.Settings;
 using MonkeHavoc.Modules.Spawners;
 using MonkeHavoc.Modules.Visual;
 
@@ -47,6 +48,24 @@ namespace MonkeHavoc.Panel
 
             new MonkeHavocModule[] // Settings
             {
+                new MonkeHavocModule()
+                {
+                    textOnButton = "StickyPlats",
+                    enable = () => StickyPlatsSettingThingy.OnDisableAndOnEnableBecauseHanSoloSaidIsGood(),
+                    disable = () => StickyPlatsSettingThingy.OnDisableAndOnEnableBecauseHanSoloSaidIsGood(),
+                },
+                new MonkeHavocModule()
+                {
+                    textOnButton = "FlySpeed", toggle = false, foreverOrOnce = () => FlySpeedAdjuster.MakeItMoreSpeedy(),
+                },
+                new MonkeHavocModule()
+                {
+                    textOnButton = "SpeedBoost", toggle = false, foreverOrOnce = () => MoreSpeedBoost.MakeItMoreSpeedy(),
+                },
+                new MonkeHavocModule()
+                {
+                    textOnButton = "Frozone", toggle = false, foreverOrOnce = () => FrozoneSeconds.MoreSeconds(),
+                },
             },
 
             new MonkeHavocModule[] // Movement

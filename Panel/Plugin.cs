@@ -23,7 +23,6 @@ namespace MonkeHavoc.Panel
         private static bool allowed = false;
         public static ConfigFile config;
         public static ConfigEntry<int> flySpeed;
-        public static ConfigEntry<int> airplaneSpeed;
         public static ConfigEntry<float> SpeedBoostSpeed;
         public static ConfigEntry<bool> isSticky;
         public static ConfigEntry<float> FrozoneSeconds;
@@ -32,7 +31,6 @@ namespace MonkeHavoc.Panel
         {
             config = new ConfigFile(Path.Combine(Paths.ConfigPath, "MonkeHavoc.cfg"), true);
             flySpeed = config.Bind("Movement", "FlySpeed", 15, "Fly speed");
-            airplaneSpeed = config.Bind("Movement", "AirplaneSpeed", 30, "Air plane speed");
             SpeedBoostSpeed = config.Bind("Movement", "SpeedBoostSpeed", 1.3f, "Speed boost");
             isSticky = config.Bind("Movement", "StickyPlats", false, "Make the platforms sticky");
             FrozoneSeconds = config.Bind("Movement", "FrozoneSeconds", 1f, "Frozone seconds");

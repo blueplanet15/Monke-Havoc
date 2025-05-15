@@ -57,7 +57,7 @@ namespace MonkeHavoc.Modules.Movement
             if (canFlyL && canFlyR)
             {
                 var rb = GTPlayer.Instance.bodyCollider.attachedRigidbody;
-                GTPlayer.Instance.transform.position += GTPlayer.Instance.headCollider.transform.forward * Time.deltaTime * Plugin.airplaneSpeed.Value;
+                GTPlayer.Instance.transform.position += GTPlayer.Instance.headCollider.transform.forward * Time.deltaTime * Plugin.flySpeed.Value;
                 rb.velocity = Vector3.zero;
             }
         }
