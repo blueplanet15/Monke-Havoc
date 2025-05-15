@@ -114,8 +114,8 @@ namespace MonkeHavoc.Panel
             {
                 new MonkeHavocModule()
                 {
-                    textOnButton = "Bone ESP", foreverOrOnce = () => BoneESP.OnActivateOrOnForever(),
-                    disable = () => BoneESP.OnDisable()
+                    textOnButton = "Bone ESP", foreverOrOnce = () => BoneESP.Forever(),
+                    disable = () => BoneESP.WhenIDisable()
                 },
             },
 
