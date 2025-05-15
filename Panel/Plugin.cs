@@ -20,7 +20,7 @@ namespace MonkeHavoc.Panel
     public class Plugin : BaseUnityPlugin
     {
         // Boring
-        private static bool allowed = false;
+        private static bool allowed = false; //sd
         public static ConfigFile config;
         public static ConfigEntry<int> flySpeed;
         public static ConfigEntry<int> airplaneSpeed;
