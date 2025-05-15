@@ -8,10 +8,12 @@ using MonkeHavoc.Classes;
 using MonkeHavoc.Modules.Horror;
 using MonkeHavoc.Modules.Spawners;
 using MonkeHavoc.Patches;
+using Photon.Pun;
 using UnityEngine;
 using TMPro;
 using UnityEngine.InputSystem;
 using UnityEngine.XR;
+using Hashtable = ExitGames.Client.Photon.Hashtable;
 using static MonkeHavoc.Panel.AllButtons;
 
 namespace MonkeHavoc.Panel
@@ -40,6 +42,10 @@ namespace MonkeHavoc.Panel
         {
             HarmonyPatches.ApplyHarmonyPatches();
             GorillaTagger.OnPlayerSpawned(Init);
+            
+            Hashtable properties = new Hashtable();
+            properties.Add("MonkeHavocVersion", PluginInfo.Version);
+            PhotonNetwork.LocalPlayer.SetCustomProperties(properties);
         }
 
         private void Init()
@@ -305,7 +311,7 @@ namespace MonkeHavoc.Panel
                 {
                     foreach (MonkeHavocModule button in category)
                     {
-                        if (button.butObj.name == sigmagismga)
+                        if (button.textOnButton == sigmagismga)
                         {
                             if (button.toggle)
                             {
@@ -333,8 +339,18 @@ namespace MonkeHavoc.Panel
                             {
                                 button.foreverOrOnce?.Invoke();
                             }
-
-                            break;
+                        }
+                        if (button.textOnButton == "Fly Speed")
+                        {
+                            button.texObj.GetComponent<TextMeshPro>().text = $"Fly Speed: {flySpeed.Value}";
+                        }
+                        if (button.textOnButton == "SpeedBoost")
+                        {
+                            button.texObj.GetComponent<TextMeshPro>().text = $"Speed: {SpeedBoostSpeed.Value}";
+                        }
+                        if (button.textOnButton == "FrozoneTime")
+                        {
+                            button.texObj.GetComponent<TextMeshPro>().text = $"Frozone Time: {FrozoneSeconds.Value}";
                         }
                     }
                 }
@@ -382,7 +398,7 @@ namespace MonkeHavoc.Panel
             {
                 Destroy(pointerBall);
             }
-            
+
             pointerBall = GameObject.CreatePrimitive(PrimitiveType.Sphere);
             pointerBall.GetComponent<Renderer>().material.shader = Shader.Find("GorillaTag/UberShader");
             pointerBall.GetComponent<Renderer>().material.color = Plugin.purp;

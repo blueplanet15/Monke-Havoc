@@ -50,21 +50,23 @@ namespace MonkeHavoc.Panel
             {
                 new MonkeHavocModule()
                 {
-                    textOnButton = "StickyPlats",
+                    textOnButton = "Sticky Plats",
                     enable = () => StickyPlatsSettingThingy.OnDisableAndOnEnableBecauseHanSoloSaidIsGood(),
                     disable = () => StickyPlatsSettingThingy.OnDisableAndOnEnableBecauseHanSoloSaidIsGood(),
                 },
                 new MonkeHavocModule()
                 {
-                    textOnButton = "FlySpeed", toggle = false, foreverOrOnce = () => FlySpeedAdjuster.MakeItMoreSpeedy(),
+                    textOnButton = "Fly Speed", toggle = false,
+                    foreverOrOnce = () => FlySpeedAdjuster.MakeItMoreSpeedy(),
                 },
                 new MonkeHavocModule()
                 {
-                    textOnButton = "SpeedBoost", toggle = false, foreverOrOnce = () => MoreSpeedBoost.MakeItMoreSpeedy(),
+                    textOnButton = "SpeedBoost", toggle = false,
+                    foreverOrOnce = () => MoreSpeedBoost.MakeItMoreSpeedy(),
                 },
                 new MonkeHavocModule()
                 {
-                    textOnButton = "Frozone", toggle = false, foreverOrOnce = () => FrozoneSeconds.MoreSeconds(),
+                    textOnButton = "FrozoneTime", toggle = false, foreverOrOnce = () => FrozoneSeconds.MoreSeconds(),
                 },
             },
 
