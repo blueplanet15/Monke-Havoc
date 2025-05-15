@@ -42,7 +42,7 @@ namespace MonkeHavoc.Panel
         {
             HarmonyPatches.ApplyHarmonyPatches();
             GorillaTagger.OnPlayerSpawned(Init);
-            
+
             Hashtable properties = new Hashtable();
             properties.Add("MonkeHavocVersion", PluginInfo.Version);
             PhotonNetwork.LocalPlayer.SetCustomProperties(properties);
@@ -340,14 +340,17 @@ namespace MonkeHavoc.Panel
                                 button.foreverOrOnce?.Invoke();
                             }
                         }
+
                         if (button.textOnButton == "Fly Speed")
                         {
                             button.texObj.GetComponent<TextMeshPro>().text = $"Fly Speed: {flySpeed.Value}";
                         }
+
                         if (button.textOnButton == "SpeedBoost")
                         {
                             button.texObj.GetComponent<TextMeshPro>().text = $"Speed: {SpeedBoostSpeed.Value}";
                         }
+
                         if (button.textOnButton == "FrozoneTime")
                         {
                             button.texObj.GetComponent<TextMeshPro>().text = $"Frozone Time: {FrozoneSeconds.Value}";
@@ -514,6 +517,9 @@ namespace MonkeHavoc.Panel
             }
         }
 
+        private static bool shouldUpdateProps = true;
+        private static List<GameObject> panels = new List<GameObject>();
+
         void FixedUpdate()
         {
             if (allowed)
@@ -527,11 +533,72 @@ namespace MonkeHavoc.Panel
                             panel.SetActive(true);
                             UpdateRaycast();
                             pointerBall.SetActive(true);
+                            if (shouldUpdateProps)
+                            {
+                                shouldUpdateProps = false;
+                                Hashtable props = new Hashtable();
+                                props.Add("MonkeHavocOpen", true);
+                                PhotonNetwork.LocalPlayer.SetCustomProperties(props);
+                            }
                         }
                         else
                         {
                             panel.SetActive(false);
                             pointerBall.SetActive(false);
+                            if (!shouldUpdateProps)
+                            {
+                                shouldUpdateProps = true;
+                                Hashtable props = new Hashtable();
+                                props.Add("MonkeHavocOpen", false);
+                                PhotonNetwork.LocalPlayer.SetCustomProperties(props);
+                            }
+                        }
+
+                        foreach (VRRig rig in GorillaParent.instance.vrrigs)
+                        {
+                            if (!rig.OwningNetPlayer.IsLocal)
+                            {
+                                if (rig.OwningNetPlayer.GetPlayerRef().CustomProperties.ContainsKey("MonkeHavocOpen"))
+                                {
+                                    if (rig.OwningNetPlayer.GetPlayerRef().CustomProperties["MonkeHavocOpen"]
+                                        .Equals(true))
+                                    {
+                                        bool shouldCreate = true;
+                                        foreach (GameObject panel in panels)
+                                        {
+                                            if (panel.name == rig.OwningNetPlayer.NickName)
+                                            {
+                                                shouldCreate = false;
+                                                break;
+                                            }
+                                        }
+
+                                        if (shouldCreate)
+                                        {
+                                            GameObject panul = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                                            panul.GetComponent<Renderer>().material.shader =
+                                                Shader.Find("GorillaTag/UberShader");
+                                            panul.GetComponent<Renderer>().material.color = purp;
+                                            panul.transform.localScale = new Vector3(0.02f, 0.3f, 0.4f);
+                                            panul.transform.SetParent(rig.leftHandTransform);
+                                            panul.transform.localPosition = new Vector3(0.06f, 0f, 0f);
+                                            panul.transform.localRotation = Quaternion.identity;
+                                            Destroy(panul.GetComponent<BoxCollider>());
+                                            panels.Add(panul);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        foreach (GameObject panel in panels)
+                                        {
+                                            if (panel.name == rig.OwningNetPlayer.NickName)
+                                            {
+                                                panel.SetActive(false);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                     else // Same with this, it is for debugging on PC and will be commented out for release.
