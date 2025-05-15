@@ -228,14 +228,16 @@ namespace MonkeHavoc.Panel
                 for (int buttonIndex = 0; buttonIndex < category.Length; buttonIndex++)
                 {
                     float offset = 0.15f * (buttonIndex % buttonsPerPageYey);
-                    CreateButton(offset, category[buttonIndex].textOnButton, buttonIndex, categoryIndex, panel.transform);
+                    CreateButton(offset, category[buttonIndex].textOnButton, buttonIndex, categoryIndex,
+                        panel.transform);
                 }
             }
 
             UpdateButtons();
         }
 
-        private static void CreateButton(float offset, string text, int buttonIndex, int categoryIndex, Transform parent)
+        private static void CreateButton(float offset, string text, int buttonIndex, int categoryIndex,
+            Transform parent)
         {
             GameObject button = GameObject.CreatePrimitive(PrimitiveType.Cube);
             button.name = text;
@@ -425,90 +427,43 @@ namespace MonkeHavoc.Panel
         {
             try
             {
-                if (XRSettings.isDeviceActive)
+                if (Physics.Raycast(GTPlayer.Instance.rightControllerTransform.position,
+                        -GTPlayer.Instance.rightControllerTransform.up, out RaycastHit hitt, Mathf.Infinity,
+                        GTPlayer.Instance.locomotionEnabledLayers))
                 {
-                    if (Physics.Raycast(GTPlayer.Instance.rightControllerTransform.position,
-                            -GTPlayer.Instance.rightControllerTransform.up, out RaycastHit hitt, Mathf.Infinity,
-                            GTPlayer.Instance.locomotionEnabledLayers))
+                    if (!pointerBall.activeSelf)
                     {
-                        if (!pointerBall.activeSelf)
-                        {
-                            pointerBall.SetActive(true);
-                        }
-
-                        if (!lineRenderer.enabled)
-                        {
-                            lineRenderer.enabled = true;
-                        }
-
-                        pointerBall.transform.position = hitt.point;
-                        lineRenderer.SetPositions(new Vector3[]
-                            { GTPlayer.Instance.rightControllerTransform.position, pointerBall.transform.position });
-                        if (ControllerInputPoller.instance.rightControllerIndexFloat > 0.5f)
-                        {
-                            pointerBall.GetComponent<Renderer>().material.color = otherpurp;
-                            lineRenderer.material.color = otherpurp;
-                        }
-                        else
-                        {
-                            pointerBall.GetComponent<Renderer>().material.color = purp;
-                            lineRenderer.material.color = purp;
-                        }
-
-                        if (ControllerInputPoller.instance.rightControllerIndexFloat > 0.5f && !iPress)
-                        {
-                            if (hitt.collider.gameObject.GetComponent<ButtonClass>() != null)
-                            {
-                                hitt.collider.gameObject.GetComponent<ButtonClass>().OnPress();
-                            }
-                        }
-
-                        iPress = ControllerInputPoller.instance.rightControllerIndexFloat > 0.5f;
+                        pointerBall.SetActive(true);
                     }
-                }
-                else // This is for debugging and will be commented out in final release.
-                {
-                    Camera iWantTHISCamera = GorillaTagger.Instance.thirdPersonCamera.transform.GetChild(0).gameObject
-                        .activeInHierarchy
-                        ? GorillaTagger.Instance.thirdPersonCamera.transform.GetChild(0).GetComponent<Camera>()
-                        : GorillaTagger.Instance.mainCamera.GetComponent<Camera>();
-                    if (Physics.Raycast(iWantTHISCamera.ScreenPointToRay(Mouse.current.position.value),
-                            out RaycastHit hitt))
+
+                    if (!lineRenderer.enabled)
                     {
-                        if (!pointerBall.activeSelf)
-                        {
-                            pointerBall.SetActive(true);
-                        }
-
-                        if (!lineRenderer.enabled)
-                        {
-                            lineRenderer.enabled = true;
-                        }
-
-                        pointerBall.transform.position = hitt.point;
-                        lineRenderer.SetPositions(new Vector3[]
-                            { GTPlayer.Instance.bodyCollider.transform.position, pointerBall.transform.position });
-                        if (Mouse.current.leftButton.isPressed)
-                        {
-                            pointerBall.GetComponent<Renderer>().material.color = otherpurp;
-                            lineRenderer.material.color = otherpurp;
-                        }
-                        else
-                        {
-                            pointerBall.GetComponent<Renderer>().material.color = purp;
-                            lineRenderer.material.color = purp;
-                        }
-
-                        if (Mouse.current.leftButton.isPressed && !iPress)
-                        {
-                            if (hitt.collider.gameObject.GetComponent<ButtonClass>() != null)
-                            {
-                                hitt.collider.gameObject.GetComponent<ButtonClass>().OnPress();
-                            }
-                        }
-
-                        iPress = Mouse.current.leftButton.isPressed;
+                        lineRenderer.enabled = true;
                     }
+
+                    pointerBall.transform.position = hitt.point;
+                    lineRenderer.SetPositions(new Vector3[]
+                        { GTPlayer.Instance.rightControllerTransform.position, pointerBall.transform.position });
+                    if (ControllerInputPoller.instance.rightControllerIndexFloat > 0.5f)
+                    {
+                        pointerBall.GetComponent<Renderer>().material.color = otherpurp;
+                        lineRenderer.material.color = otherpurp;
+                    }
+                    else
+                    {
+                        pointerBall.GetComponent<Renderer>().material.color = purp;
+                        lineRenderer.material.color = purp;
+                    }
+
+                    if (ControllerInputPoller.instance.rightControllerIndexFloat > 0.5f && !iPress)
+                    {
+                        if (hitt.collider.gameObject.GetComponent<ButtonClass>() != null)
+                        {
+                            hitt.collider.gameObject.GetComponent<ButtonClass>().OnPress();
+                        }
+                    }
+
+                    iPress = ControllerInputPoller.instance.rightControllerIndexFloat > 0.5f;
                 }
             }
             catch
@@ -516,7 +471,7 @@ namespace MonkeHavoc.Panel
                 IGetCaughtIThink();
             }
         }
-        
+
         private static void WannabeCreateButton(float offset, string text, Transform parent)
         {
             GameObject button = GameObject.CreatePrimitive(PrimitiveType.Cube);
@@ -536,180 +491,170 @@ namespace MonkeHavoc.Panel
         private static bool shouldUpdateProps = true;
         private static List<GameObject> panels = new List<GameObject>();
         private static Dictionary<string, Hashtable> customProps = new Dictionary<string, Hashtable>();
+
         void FixedUpdate()
         {
             if (allowed)
             {
                 try
                 {
-                    if (XRSettings.isDeviceActive)
-                    {
-                        if (ControllerInputPoller.instance.leftControllerSecondaryButton)
-                        {
-                            panel.SetActive(true);
-                            UpdateRaycast();
-                            pointerBall.SetActive(true);
-                            if (shouldUpdateProps)
-                            {
-                                shouldUpdateProps = false;
-                                Hashtable props = new Hashtable();
-                                props.Add("MonkeHavocOpen", true);
-                                PhotonNetwork.LocalPlayer.SetCustomProperties(props);
-                            }
-                        }
-                        else
-                        {
-                            panel.SetActive(false);
-                            pointerBall.SetActive(false);
-                            if (!shouldUpdateProps)
-                            {
-                                shouldUpdateProps = true;
-                                Hashtable props = new Hashtable();
-                                props.Add("MonkeHavocOpen", false);
-                                PhotonNetwork.LocalPlayer.SetCustomProperties(props);
-                            }
-                        }
-
-                        foreach (VRRig rig in GorillaParent.instance.vrrigs)
-                        {
-                            if (!rig.OwningNetPlayer.IsLocal)
-                            {
-                                if (!customProps.ContainsKey(rig.OwningNetPlayer.UserId))
-                                {
-                                    customProps.Add(rig.OwningNetPlayer.UserId,
-                                        rig.OwningNetPlayer.GetPlayerRef().CustomProperties);
-                                    break;
-                                }
-
-                                if (customProps[rig.OwningNetPlayer.UserId].ContainsKey("MonkeHavocOpen"))
-                                {
-                                    if (rig.OwningNetPlayer.GetPlayerRef().CustomProperties["MonkeHavocOpen"].Equals(true))
-                                    {
-                                        bool shouldCreate = true;
-                                        foreach (GameObject panel in panels)
-                                        {
-                                            if (panel.name == rig.OwningNetPlayer.UserId)
-                                            {
-                                                shouldCreate = false;
-                                                panel.SetActive(true);
-                                                break;
-                                            }
-                                        }
-
-                                        if (shouldCreate)
-                                        {
-                                            GameObject panul = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                                            panul.GetComponent<Renderer>().material.shader =
-                                                Shader.Find("GorillaTag/UberShader");
-                                            panul.GetComponent<Renderer>().material.color = purp;
-                                            panul.name = rig.OwningNetPlayer.UserId;
-                                            panul.transform.localScale = new Vector3(0.02f, 0.25f, 0.45f);
-                                            panul.transform.SetParent(rig.leftHandTransform);
-                                            panul.transform.localPosition = new Vector3(-0.1f, 0.1f, 0.1f);
-                                            panul.transform.localRotation = Quaternion.Euler(180f, 180f, 0f);
-                                            Destroy(panul.GetComponent<BoxCollider>());
-                                            panels.Add(panul);
-
-                                            GameObject titlePhysicalObj =
-                                                GameObject.CreatePrimitive(PrimitiveType.Cube);
-                                            titlePhysicalObj.GetComponent<Renderer>().material.shader =
-                                                Shader.Find("GorillaTag/UberShader");
-                                            titlePhysicalObj.GetComponent<Renderer>().material.color = otherpurp;
-                                            titlePhysicalObj.transform.SetParent(panul.transform);
-                                            titlePhysicalObj.transform.localScale = new Vector3(1f, 1.25f, 0.2f);
-                                            titlePhysicalObj.transform.localPosition = new Vector3(0f, 0f, 0.7f);
-                                            titlePhysicalObj.transform.localRotation = Quaternion.identity;
-                                            Destroy(titlePhysicalObj.GetComponent<BoxCollider>());
-                                            GameObject titleTextObj = CreateTextLabel("MonkeHavoc",
-                                                titlePhysicalObj.transform, out var tmp, 1.9f);
-                                            
-                                            GameObject cs = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                                            cs.GetComponent<Renderer>().material.shader =
-                                                Shader.Find("GorillaTag/UberShader");
-                                            cs.GetComponent<Renderer>().material.color = (purp + otherpurp) * 0.5f;
-                                            cs.transform.SetParent(panul.transform);
-                                            cs.transform.localScale = new Vector3(1f, 0.9f, 0.15f);
-                                            cs.transform.localPosition = new Vector3(0.6f, 0f, 0.375f);
-                                            cs.transform.localRotation = Quaternion.identity;
-                                            Destroy(cs.GetComponent<BoxCollider>());
-                                            GameObject csTextObj =
-                                                CreateTextLabel(currentCategoryName, cs.transform,
-                                                    out TextMeshPro textMeshPro, 1.5f);
-                                            toChangeOnUpdateButtons = textMeshPro;
-                                            
-                                            GameObject pl = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                                            pl.GetComponent<Renderer>().material.shader =
-                                                Shader.Find("GorillaTag/UberShader");
-                                            pl.GetComponent<Renderer>().material.color = otherpurp;
-                                            pl.transform.SetParent(panul.transform);
-                                            pl.transform.localScale = new Vector3(1f, 0.15f, 0.9f);
-                                            pl.transform.localPosition = new Vector3(0f, 0.65f, 0f);
-                                            pl.transform.localRotation = Quaternion.identity;
-                                            pl.GetComponent<BoxCollider>().isTrigger = true;
-                                            pl.AddComponent<ButtonClass>().mystringtorunitallllllllllllllll =
-                                                "PageLeft";
-                                            GameObject pageLeftTextObj =
-                                                CreateTextLabel("<", pl.transform, out var tmp2);
-                                            
-                                            GameObject pr = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                                            pr.GetComponent<Renderer>().material.shader =
-                                                Shader.Find("GorillaTag/UberShader");
-                                            pr.GetComponent<Renderer>().material.color = otherpurp;
-                                            pr.transform.SetParent(panul.transform);
-                                            pr.transform.localScale = pl.transform.localScale;
-                                            pr.transform.localPosition = new Vector3(pl.transform.localPosition.x,
-                                                -pl.transform.localPosition.y,
-                                                pl.transform.localPosition.z);
-                                            pr.transform.localRotation = Quaternion.identity;
-                                            pr.GetComponent<BoxCollider>().isTrigger = true;
-                                            pr.AddComponent<ButtonClass>().mystringtorunitallllllllllllllll =
-                                                "PageRight";
-                                            GameObject pageRightTextObj =
-                                                CreateTextLabel(">", pr.transform, out var tmp3);
-                                            
-                                            GameObject hb = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                                            hb.GetComponent<Renderer>().material.shader =
-                                                Shader.Find("GorillaTag/UberShader");
-                                            hb.GetComponent<Renderer>().material.color = otherpurp;
-                                            hb.transform.SetParent(panul.transform);
-                                            hb.transform.localScale = new Vector3(1f, 1f, 0.15f);
-                                            hb.transform.localPosition = new Vector3(0f, 0f, -0.65f);
-                                            hb.transform.localRotation = Quaternion.identity;
-                                            hb.GetComponent<BoxCollider>().isTrigger = true;
-                                            hb.AddComponent<ButtonClass>().mystringtorunitallllllllllllllll = "Home";
-                                            GameObject homeTextObj = CreateTextLabel("Go Home", hb.transform,
-                                                out var tmp4, 1.2f);
-                                            
-                                            MonkeHavocModule[] category = categories[0];
-                                            for (int buttonIndex = 0; buttonIndex < buttonsPerPageYey; buttonIndex++)
-                                            {
-                                                float offset = 0.15f * (buttonIndex % buttonsPerPageYey);
-                                                WannabeCreateButton(offset, category[buttonIndex].textOnButton, panul.transform);
-                                            }
-                                        }
-                                    }
-                                    else
-                                    {
-                                        foreach (GameObject panel in panels)
-                                        {
-                                            if (panel.name == rig.OwningNetPlayer.UserId)
-                                            {
-                                                panel.SetActive(false);
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    else // Same with this, it is for debugging on PC and will be commented out for release.
+                    if (ControllerInputPoller.instance.leftControllerSecondaryButton)
                     {
                         panel.SetActive(true);
-                        panel.transform.parent = null;
-                        panel.transform.position = Vector3.one;
-                        panel.transform.rotation = Quaternion.Euler(-90f, -90f, 0f);
                         UpdateRaycast();
                         pointerBall.SetActive(true);
+                        if (shouldUpdateProps)
+                        {
+                            shouldUpdateProps = false;
+                            Hashtable props = new Hashtable();
+                            props.Add("MonkeHavocOpen", true);
+                            PhotonNetwork.LocalPlayer.SetCustomProperties(props);
+                        }
+                    }
+                    else
+                    {
+                        panel.SetActive(false);
+                        pointerBall.SetActive(false);
+                        if (!shouldUpdateProps)
+                        {
+                            shouldUpdateProps = true;
+                            Hashtable props = new Hashtable();
+                            props.Add("MonkeHavocOpen", false);
+                            PhotonNetwork.LocalPlayer.SetCustomProperties(props);
+                        }
+                    }
+
+                    foreach (VRRig rig in GorillaParent.instance.vrrigs)
+                    {
+                        if (!rig.OwningNetPlayer.IsLocal)
+                        {
+                            if (!customProps.ContainsKey(rig.OwningNetPlayer.UserId))
+                            {
+                                customProps.Add(rig.OwningNetPlayer.UserId,
+                                    rig.OwningNetPlayer.GetPlayerRef().CustomProperties);
+                                break;
+                            }
+
+                            if (customProps[rig.OwningNetPlayer.UserId].ContainsKey("MonkeHavocOpen"))
+                            {
+                                if (rig.OwningNetPlayer.GetPlayerRef().CustomProperties["MonkeHavocOpen"].Equals(true))
+                                {
+                                    bool shouldCreate = true;
+                                    foreach (GameObject panel in panels)
+                                    {
+                                        if (panel.name == rig.OwningNetPlayer.UserId)
+                                        {
+                                            shouldCreate = false;
+                                            panel.SetActive(true);
+                                            break;
+                                        }
+                                    }
+
+                                    if (shouldCreate)
+                                    {
+                                        GameObject panul = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                                        panul.GetComponent<Renderer>().material.shader =
+                                            Shader.Find("GorillaTag/UberShader");
+                                        panul.GetComponent<Renderer>().material.color = purp;
+                                        panul.name = rig.OwningNetPlayer.UserId;
+                                        panul.transform.localScale = new Vector3(0.02f, 0.25f, 0.45f);
+                                        panul.transform.SetParent(rig.leftHandTransform);
+                                        panul.transform.localPosition = new Vector3(-0.1f, 0.1f, 0.1f);
+                                        panul.transform.localRotation = Quaternion.Euler(180f, 180f, 0f);
+                                        Destroy(panul.GetComponent<BoxCollider>());
+                                        panels.Add(panul);
+
+                                        GameObject titlePhysicalObj =
+                                            GameObject.CreatePrimitive(PrimitiveType.Cube);
+                                        titlePhysicalObj.GetComponent<Renderer>().material.shader =
+                                            Shader.Find("GorillaTag/UberShader");
+                                        titlePhysicalObj.GetComponent<Renderer>().material.color = otherpurp;
+                                        titlePhysicalObj.transform.SetParent(panul.transform);
+                                        titlePhysicalObj.transform.localScale = new Vector3(1f, 1.25f, 0.2f);
+                                        titlePhysicalObj.transform.localPosition = new Vector3(0f, 0f, 0.7f);
+                                        titlePhysicalObj.transform.localRotation = Quaternion.identity;
+                                        Destroy(titlePhysicalObj.GetComponent<BoxCollider>());
+                                        GameObject titleTextObj = CreateTextLabel("MonkeHavoc",
+                                            titlePhysicalObj.transform, out var tmp, 1.9f);
+
+                                        GameObject cs = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                                        cs.GetComponent<Renderer>().material.shader =
+                                            Shader.Find("GorillaTag/UberShader");
+                                        cs.GetComponent<Renderer>().material.color = (purp + otherpurp) * 0.5f;
+                                        cs.transform.SetParent(panul.transform);
+                                        cs.transform.localScale = new Vector3(1f, 0.9f, 0.15f);
+                                        cs.transform.localPosition = new Vector3(0.6f, 0f, 0.375f);
+                                        cs.transform.localRotation = Quaternion.identity;
+                                        Destroy(cs.GetComponent<BoxCollider>());
+                                        GameObject csTextObj =
+                                            CreateTextLabel(currentCategoryName, cs.transform,
+                                                out TextMeshPro textMeshPro, 1.5f);
+                                        toChangeOnUpdateButtons = textMeshPro;
+
+                                        GameObject pl = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                                        pl.GetComponent<Renderer>().material.shader =
+                                            Shader.Find("GorillaTag/UberShader");
+                                        pl.GetComponent<Renderer>().material.color = otherpurp;
+                                        pl.transform.SetParent(panul.transform);
+                                        pl.transform.localScale = new Vector3(1f, 0.15f, 0.9f);
+                                        pl.transform.localPosition = new Vector3(0f, 0.65f, 0f);
+                                        pl.transform.localRotation = Quaternion.identity;
+                                        pl.GetComponent<BoxCollider>().isTrigger = true;
+                                        pl.AddComponent<ButtonClass>().mystringtorunitallllllllllllllll =
+                                            "PageLeft";
+                                        GameObject pageLeftTextObj =
+                                            CreateTextLabel("<", pl.transform, out var tmp2);
+
+                                        GameObject pr = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                                        pr.GetComponent<Renderer>().material.shader =
+                                            Shader.Find("GorillaTag/UberShader");
+                                        pr.GetComponent<Renderer>().material.color = otherpurp;
+                                        pr.transform.SetParent(panul.transform);
+                                        pr.transform.localScale = pl.transform.localScale;
+                                        pr.transform.localPosition = new Vector3(pl.transform.localPosition.x,
+                                            -pl.transform.localPosition.y,
+                                            pl.transform.localPosition.z);
+                                        pr.transform.localRotation = Quaternion.identity;
+                                        pr.GetComponent<BoxCollider>().isTrigger = true;
+                                        pr.AddComponent<ButtonClass>().mystringtorunitallllllllllllllll =
+                                            "PageRight";
+                                        GameObject pageRightTextObj =
+                                            CreateTextLabel(">", pr.transform, out var tmp3);
+
+                                        GameObject hb = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                                        hb.GetComponent<Renderer>().material.shader =
+                                            Shader.Find("GorillaTag/UberShader");
+                                        hb.GetComponent<Renderer>().material.color = otherpurp;
+                                        hb.transform.SetParent(panul.transform);
+                                        hb.transform.localScale = new Vector3(1f, 1f, 0.15f);
+                                        hb.transform.localPosition = new Vector3(0f, 0f, -0.65f);
+                                        hb.transform.localRotation = Quaternion.identity;
+                                        hb.GetComponent<BoxCollider>().isTrigger = true;
+                                        hb.AddComponent<ButtonClass>().mystringtorunitallllllllllllllll = "Home";
+                                        GameObject homeTextObj = CreateTextLabel("Go Home", hb.transform,
+                                            out var tmp4, 1.2f);
+
+                                        MonkeHavocModule[] category = categories[0];
+                                        for (int buttonIndex = 0; buttonIndex < buttonsPerPageYey; buttonIndex++)
+                                        {
+                                            float offset = 0.15f * (buttonIndex % buttonsPerPageYey);
+                                            WannabeCreateButton(offset, category[buttonIndex].textOnButton,
+                                                panul.transform);
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    foreach (GameObject panel in panels)
+                                    {
+                                        if (panel.name == rig.OwningNetPlayer.UserId)
+                                        {
+                                            panel.SetActive(false);
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
 
                     if (toInvoke != null)
