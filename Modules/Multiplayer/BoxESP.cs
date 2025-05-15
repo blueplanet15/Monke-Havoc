@@ -32,6 +32,7 @@ namespace MonkeHavoc.Modules.Multiplayer
                     box.name = rig.OwningNetPlayer.NickName;
                     box.GetComponent<Renderer>().material.shader = Shader.Find("GUI/Text Shader");
                     box.GetComponent<Renderer>().material.color = new Color(rig.playerColor.r, rig.playerColor.g, rig.playerColor.b,0.35f);
+                    GameObject.Destroy(box.GetComponent<BoxCollider>());
                     boxes.Add(box);
                 }
             }

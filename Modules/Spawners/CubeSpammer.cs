@@ -32,7 +32,6 @@ namespace MonkeHavoc.Modules.Spawners
         public static void Disable()
         {
             gun.OnDisable();
-            RemoveCubes();
         }
 
         public static void RemoveCubes()
