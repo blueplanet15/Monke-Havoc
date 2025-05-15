@@ -58,6 +58,11 @@ namespace MonkeHavoc.Panel
                 },
                 new MonkeHavocModule()
                 {
+                    textOnButton = "NoClip", foreverOrOnce = () => NoClip.ForeverLostOnIslandsLivingThatBoatRand(),
+                    disable = () => NoClip.Disable()
+                },
+                new MonkeHavocModule()
+                {
                     textOnButton = "Speedboost", foreverOrOnce = () => Speedboost.LetsDoThisFAST()
                 },
                 new MonkeHavocModule()
