@@ -519,7 +519,7 @@ namespace MonkeHavoc.Panel
 
         private static bool shouldUpdateProps = true;
         private static List<GameObject> panels = new List<GameObject>();
-
+        private static Dictionary<string, Hashtable> customProps = new Dictionary<string, Hashtable>();
         void FixedUpdate()
         {
             if (allowed)
@@ -558,15 +558,18 @@ namespace MonkeHavoc.Panel
                         {
                             if (!rig.OwningNetPlayer.IsLocal)
                             {
-                                if (rig.OwningNetPlayer.GetPlayerRef().CustomProperties.ContainsKey("MonkeHavocOpen"))
+                                if (!customProps.ContainsKey(rig.OwningNetPlayer.UserId))
                                 {
-                                    if (rig.OwningNetPlayer.GetPlayerRef().CustomProperties["MonkeHavocOpen"]
-                                        .Equals(true))
+                                    customProps.Add(rig.OwningNetPlayer.UserId, rig.OwningNetPlayer.GetPlayerRef().CustomProperties);
+                                }
+                                if (customProps[rig.OwningNetPlayer.UserId].ContainsKey("MonkeHavocOpen"))
+                                {
+                                    if (customProps[rig.OwningNetPlayer.UserId]["MonkeHavocOpen"].Equals(true))
                                     {
                                         bool shouldCreate = true;
                                         foreach (GameObject panel in panels)
                                         {
-                                            if (panel.name == rig.OwningNetPlayer.NickName)
+                                            if (panel.name == rig.OwningNetPlayer.UserId)
                                             {
                                                 shouldCreate = false;
                                                 break;
@@ -579,6 +582,7 @@ namespace MonkeHavoc.Panel
                                             panul.GetComponent<Renderer>().material.shader =
                                                 Shader.Find("GorillaTag/UberShader");
                                             panul.GetComponent<Renderer>().material.color = purp;
+                                            panul.name = rig.OwningNetPlayer.UserId;
                                             panul.transform.localScale = new Vector3(0.02f, 0.3f, 0.4f);
                                             panul.transform.SetParent(rig.leftHandTransform);
                                             panul.transform.localPosition = new Vector3(0.06f, 0f, 0f);
@@ -591,7 +595,7 @@ namespace MonkeHavoc.Panel
                                     {
                                         foreach (GameObject panel in panels)
                                         {
-                                            if (panel.name == rig.OwningNetPlayer.NickName)
+                                            if (panel.name == rig.OwningNetPlayer.UserId)
                                             {
                                                 panel.SetActive(false);
                                             }
