@@ -132,8 +132,8 @@ namespace MonkeHavoc.Panel
 
         // Very cool!!!!!!!!
         public static GameObject panel;
-        public static Color purp = new Color32(51, 0, 87, 1);
-        public static Color otherpurp = new Color32(60, 26, 112, 1);
+        public static Color purp = new Color32(85, 198, 255, 1);
+        public static Color otherpurp = new Color32(25, 158, 215, 1);
         public static int currentPage = 0;
         public static int currentCategory = 0;
         public static string currentCategoryName = "Home";
